@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81D39003957D80BF5D37D2CC /* Pods_SuperCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */; };
+		AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72A224926E000A98CC2 /* ProductsManager.swift */; };
 		ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B22246869A000A2135 /* AppDelegate.swift */; };
 		ADB157B52246869B000A2135 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B42246869B000A2135 /* ViewController.swift */; };
 		ADB157B82246869B000A2135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB157B62246869B000A2135 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		7105189D18E7B3DCC1B37855 /* Pods_SuperCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCart.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCart/Pods-SuperCart.release.xcconfig"; sourceTree = "<group>"; };
 		AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCartTests/Pods-SuperCartTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD73B72A224926E000A98CC2 /* ProductsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
 		ADB157AF2246869A000A2135 /* SuperCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB157B22246869A000A2135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADB157B42246869B000A2135 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD73B7292249265C00A98CC2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				ADB157D2224688BB000A2135 /* ChatViewController.swift */,
+				ADB157D4224688E0000A2135 /* SpeechManager.swift */,
+				AD73B72A224926E000A98CC2 /* ProductsManager.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		ADB157A62246869A000A2135 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +107,7 @@
 			children = (
 				ADB157B22246869A000A2135 /* AppDelegate.swift */,
 				ADB157B42246869B000A2135 /* ViewController.swift */,
-				ADB157D2224688BB000A2135 /* ChatViewController.swift */,
-				ADB157D4224688E0000A2135 /* SpeechManager.swift */,
+				AD73B7292249265C00A98CC2 /* Chat */,
 				ADB157B62246869B000A2135 /* Main.storyboard */,
 				ADB157B92246869C000A2135 /* Assets.xcassets */,
 				ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */,
@@ -276,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */,
 				ADB157B52246869B000A2135 /* ViewController.swift in Sources */,
 				ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */,
 				ADB157D3224688BB000A2135 /* ChatViewController.swift in Sources */,

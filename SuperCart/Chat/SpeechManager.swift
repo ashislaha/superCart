@@ -36,13 +36,13 @@ class SpeechManager {
             recognitionTask = nil
         }
         
-//        do {
-//            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-//            try audioSession.setMode(AVAudioSessionModeMeasurement)
-//            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-//        } catch {
-//            print("audioSession properties weren't set because of an error.")
-//        }
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record, mode: .default, options: .defaultToSpeaker)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
         
         request = SFSpeechAudioBufferRecognitionRequest()
         let inputNode = audioEngine.inputNode
@@ -85,15 +85,15 @@ class SpeechManager {
     }
     
     func speak(text: String) {
-//        do {
-//            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-//            try audioSession.setMode(AVAudioSessionModeMeasurement)
-//            try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-//        } catch {
-//            print("audioSession properties weren't set because of an error.")
-//        }
-//        let speechUtterance = AVSpeechUtterance(string: text)
-//        speechSynthesizer.speak(speechUtterance)
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback, mode: .default, options: .defaultToSpeaker)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("audioSession properties weren't set because of an error.")
+        }
+        let speechUtterance = AVSpeechUtterance(string: text)
+        speechSynthesizer.speak(speechUtterance)
     }
 }
 
