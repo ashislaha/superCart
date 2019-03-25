@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		81D39003957D80BF5D37D2CC /* Pods_SuperCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */; };
 		AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72A224926E000A98CC2 /* ProductsManager.swift */; };
+		AD73B72E2249314B00A98CC2 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72D2249314B00A98CC2 /* InputViewController.swift */; };
 		ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B22246869A000A2135 /* AppDelegate.swift */; };
-		ADB157B52246869B000A2135 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B42246869B000A2135 /* ViewController.swift */; };
+		ADB157B52246869B000A2135 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B42246869B000A2135 /* LoginViewController.swift */; };
 		ADB157B82246869B000A2135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB157B62246869B000A2135 /* Main.storyboard */; };
 		ADB157BA2246869C000A2135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB157B92246869C000A2135 /* Assets.xcassets */; };
 		ADB157BD2246869C000A2135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */; };
@@ -38,9 +39,10 @@
 		A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCart.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCart/Pods-SuperCart.release.xcconfig"; sourceTree = "<group>"; };
 		AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCartTests/Pods-SuperCartTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD73B72A224926E000A98CC2 /* ProductsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
+		AD73B72D2249314B00A98CC2 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		ADB157AF2246869A000A2135 /* SuperCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB157B22246869A000A2135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ADB157B42246869B000A2135 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ADB157B42246869B000A2135 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ADB157B72246869B000A2135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADB157B92246869C000A2135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADB157BC2246869C000A2135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +84,16 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		AD73B72C22492C9A00A98CC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADB157B62246869B000A2135 /* Main.storyboard */,
+				ADB157B92246869C000A2135 /* Assets.xcassets */,
+				ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		ADB157A62246869A000A2135 = {
 			isa = PBXGroup;
 			children = (
@@ -106,11 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				ADB157B22246869A000A2135 /* AppDelegate.swift */,
-				ADB157B42246869B000A2135 /* ViewController.swift */,
+				ADB157B42246869B000A2135 /* LoginViewController.swift */,
+				AD73B72D2249314B00A98CC2 /* InputViewController.swift */,
 				AD73B7292249265C00A98CC2 /* Chat */,
-				ADB157B62246869B000A2135 /* Main.storyboard */,
-				ADB157B92246869C000A2135 /* Assets.xcassets */,
-				ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */,
+				AD73B72C22492C9A00A98CC2 /* View */,
 				ADB157BE2246869C000A2135 /* Info.plist */,
 			);
 			path = SuperCart;
@@ -288,8 +299,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */,
-				ADB157B52246869B000A2135 /* ViewController.swift in Sources */,
+				ADB157B52246869B000A2135 /* LoginViewController.swift in Sources */,
 				ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */,
+				AD73B72E2249314B00A98CC2 /* InputViewController.swift in Sources */,
 				ADB157D3224688BB000A2135 /* ChatViewController.swift in Sources */,
 				ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */,
 			);
