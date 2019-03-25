@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81D39003957D80BF5D37D2CC /* Pods_SuperCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */; };
+		ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B22246869A000A2135 /* AppDelegate.swift */; };
+		ADB157B52246869B000A2135 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B42246869B000A2135 /* ViewController.swift */; };
+		ADB157B82246869B000A2135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB157B62246869B000A2135 /* Main.storyboard */; };
+		ADB157BA2246869C000A2135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB157B92246869C000A2135 /* Assets.xcassets */; };
+		ADB157BD2246869C000A2135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */; };
+		ADB157C82246869D000A2135 /* SuperCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157C72246869D000A2135 /* SuperCartTests.swift */; };
+		ADB157D3224688BB000A2135 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157D2224688BB000A2135 /* ChatViewController.swift */; };
+		ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157D4224688E0000A2135 /* SpeechManager.swift */; };
+		EF0A561FB0AA2808391598E7 /* Pods_SuperCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7105189D18E7B3DCC1B37855 /* Pods_SuperCart.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ADB157C42246869D000A2135 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB157A72246869A000A2135 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADB157AE2246869A000A2135;
+			remoteInfo = SuperCart;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0412B5DB3AE41C7FF46876BA /* Pods-SuperCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCart/Pods-SuperCart.debug.xcconfig"; sourceTree = "<group>"; };
+		465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperCartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70677C365F4FB895F3AC5BD7 /* Pods-SuperCartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCartTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCartTests/Pods-SuperCartTests.release.xcconfig"; sourceTree = "<group>"; };
+		7105189D18E7B3DCC1B37855 /* Pods_SuperCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCart.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCart/Pods-SuperCart.release.xcconfig"; sourceTree = "<group>"; };
+		AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCartTests/Pods-SuperCartTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ADB157AF2246869A000A2135 /* SuperCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB157B22246869A000A2135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ADB157B42246869B000A2135 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ADB157B72246869B000A2135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ADB157B92246869C000A2135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADB157BC2246869C000A2135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ADB157BE2246869C000A2135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADB157C32246869D000A2135 /* SuperCartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperCartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB157C72246869D000A2135 /* SuperCartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCartTests.swift; sourceTree = "<group>"; };
+		ADB157C92246869D000A2135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADB157D2224688BB000A2135 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		ADB157D4224688E0000A2135 /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ADB157AC2246869A000A2135 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF0A561FB0AA2808391598E7 /* Pods_SuperCart.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB157C02246869D000A2135 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D39003957D80BF5D37D2CC /* Pods_SuperCartTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADB157A62246869A000A2135 = {
+			isa = PBXGroup;
+			children = (
+				ADB157B12246869A000A2135 /* SuperCart */,
+				ADB157C62246869D000A2135 /* SuperCartTests */,
+				ADB157B02246869A000A2135 /* Products */,
+				C0E2973F49CA3E3D50384B17 /* Pods */,
+				F08CE815A9F4BF6068E40AFD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		ADB157B02246869A000A2135 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADB157AF2246869A000A2135 /* SuperCart.app */,
+				ADB157C32246869D000A2135 /* SuperCartTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADB157B12246869A000A2135 /* SuperCart */ = {
+			isa = PBXGroup;
+			children = (
+				ADB157B22246869A000A2135 /* AppDelegate.swift */,
+				ADB157B42246869B000A2135 /* ViewController.swift */,
+				ADB157D2224688BB000A2135 /* ChatViewController.swift */,
+				ADB157D4224688E0000A2135 /* SpeechManager.swift */,
+				ADB157B62246869B000A2135 /* Main.storyboard */,
+				ADB157B92246869C000A2135 /* Assets.xcassets */,
+				ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */,
+				ADB157BE2246869C000A2135 /* Info.plist */,
+			);
+			path = SuperCart;
+			sourceTree = "<group>";
+		};
+		ADB157C62246869D000A2135 /* SuperCartTests */ = {
+			isa = PBXGroup;
+			children = (
+				ADB157C72246869D000A2135 /* SuperCartTests.swift */,
+				ADB157C92246869D000A2135 /* Info.plist */,
+			);
+			path = SuperCartTests;
+			sourceTree = "<group>";
+		};
+		C0E2973F49CA3E3D50384B17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0412B5DB3AE41C7FF46876BA /* Pods-SuperCart.debug.xcconfig */,
+				A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */,
+				AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */,
+				70677C365F4FB895F3AC5BD7 /* Pods-SuperCartTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F08CE815A9F4BF6068E40AFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7105189D18E7B3DCC1B37855 /* Pods_SuperCart.framework */,
+				465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ADB157AE2246869A000A2135 /* SuperCart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB157CC2246869D000A2135 /* Build configuration list for PBXNativeTarget "SuperCart" */;
+			buildPhases = (
+				64119E91A25D80BA65D8D842 /* [CP] Check Pods Manifest.lock */,
+				ADB157AB2246869A000A2135 /* Sources */,
+				ADB157AC2246869A000A2135 /* Frameworks */,
+				ADB157AD2246869A000A2135 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SuperCart;
+			productName = SuperCart;
+			productReference = ADB157AF2246869A000A2135 /* SuperCart.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ADB157C22246869D000A2135 /* SuperCartTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB157CF2246869D000A2135 /* Build configuration list for PBXNativeTarget "SuperCartTests" */;
+			buildPhases = (
+				1001F756ED9B875AD2701300 /* [CP] Check Pods Manifest.lock */,
+				ADB157BF2246869D000A2135 /* Sources */,
+				ADB157C02246869D000A2135 /* Frameworks */,
+				ADB157C12246869D000A2135 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADB157C52246869D000A2135 /* PBXTargetDependency */,
+			);
+			name = SuperCartTests;
+			productName = SuperCartTests;
+			productReference = ADB157C32246869D000A2135 /* SuperCartTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADB157A72246869A000A2135 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Team A";
+				TargetAttributes = {
+					ADB157AE2246869A000A2135 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					ADB157C22246869D000A2135 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = ADB157AE2246869A000A2135;
+					};
+				};
+			};
+			buildConfigurationList = ADB157AA2246869A000A2135 /* Build configuration list for PBXProject "SuperCart" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ADB157A62246869A000A2135;
+			productRefGroup = ADB157B02246869A000A2135 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADB157AE2246869A000A2135 /* SuperCart */,
+				ADB157C22246869D000A2135 /* SuperCartTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ADB157AD2246869A000A2135 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB157BD2246869C000A2135 /* LaunchScreen.storyboard in Resources */,
+				ADB157BA2246869C000A2135 /* Assets.xcassets in Resources */,
+				ADB157B82246869B000A2135 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB157C12246869D000A2135 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1001F756ED9B875AD2701300 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuperCartTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64119E91A25D80BA65D8D842 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuperCart-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADB157AB2246869A000A2135 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB157B52246869B000A2135 /* ViewController.swift in Sources */,
+				ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */,
+				ADB157D3224688BB000A2135 /* ChatViewController.swift in Sources */,
+				ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB157BF2246869D000A2135 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB157C82246869D000A2135 /* SuperCartTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADB157C52246869D000A2135 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADB157AE2246869A000A2135 /* SuperCart */;
+			targetProxy = ADB157C42246869D000A2135 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ADB157B62246869B000A2135 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADB157B72246869B000A2135 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ADB157BB2246869C000A2135 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADB157BC2246869C000A2135 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ADB157CA2246869D000A2135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ADB157CB2246869D000A2135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ADB157CD2246869D000A2135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0412B5DB3AE41C7FF46876BA /* Pods-SuperCart.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = SuperCart/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashislaha.SuperCart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ADB157CE2246869D000A2135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = SuperCart/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashislaha.SuperCart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ADB157D02246869D000A2135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = SuperCartTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashislaha.SuperCartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperCart.app/SuperCart";
+			};
+			name = Debug;
+		};
+		ADB157D12246869D000A2135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70677C365F4FB895F3AC5BD7 /* Pods-SuperCartTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3Z9URG96M;
+				INFOPLIST_FILE = SuperCartTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashislaha.SuperCartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperCart.app/SuperCart";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ADB157AA2246869A000A2135 /* Build configuration list for PBXProject "SuperCart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB157CA2246869D000A2135 /* Debug */,
+				ADB157CB2246869D000A2135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB157CC2246869D000A2135 /* Build configuration list for PBXNativeTarget "SuperCart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB157CD2246869D000A2135 /* Debug */,
+				ADB157CE2246869D000A2135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB157CF2246869D000A2135 /* Build configuration list for PBXNativeTarget "SuperCartTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB157D02246869D000A2135 /* Debug */,
+				ADB157D12246869D000A2135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADB157A72246869A000A2135 /* Project object */;
+}

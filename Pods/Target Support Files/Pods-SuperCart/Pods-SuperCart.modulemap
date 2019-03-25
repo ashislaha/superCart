@@ -1,0 +1,6 @@
+framework module Pods_SuperCart {
+  umbrella header "Pods-SuperCart-umbrella.h"
+
+  export *
+  module * { export * }
+}
