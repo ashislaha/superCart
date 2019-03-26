@@ -8,10 +8,16 @@
 
 import UIKit
 
-struct BasicProduct {
+struct BasicProduct: Equatable {
     let title: String
     let category: String
     let subCategory: String
+    
+    public static func == (lhs: BasicProduct, rhs: BasicProduct) -> Bool {
+        return lhs.title.lowercased() == rhs.title.lowercased() &&
+            lhs.category.lowercased() == rhs.category.lowercased() &&
+            lhs.subCategory.lowercased() == rhs.subCategory.lowercased()
+    }
 }
 
 enum ProductCategory: String {
@@ -25,12 +31,27 @@ enum ProductCategory: String {
     case tea
     case coffee
     case noodles
+    
+    func image() -> UIImage {
+        switch self {
+        case .dairy: return #imageLiteral(resourceName: "dairy")
+        case .oil: return #imageLiteral(resourceName: "oil")
+        case .rice: return #imageLiteral(resourceName: "rice")
+        case .sugar: return #imageLiteral(resourceName: "sugar")
+        case .biscuits: return #imageLiteral(resourceName: "biscuits")
+        case .juice: return #imageLiteral(resourceName: "juice")
+        case .masala: return #imageLiteral(resourceName: "masala")
+        case .tea: return #imageLiteral(resourceName: "tea")
+        case .coffee: return #imageLiteral(resourceName: "coffee")
+        case .noodles: return #imageLiteral(resourceName: "noodles")
+        }
+    }
 }
 
 class ProductsManager {
     
     static let shared = ProductsManager()
-    
+    public var username: String?
     var shoppingList: [ProductCategory: [BasicProduct]] = [
         .dairy: [],
         .oil: [],

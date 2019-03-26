@@ -212,16 +212,40 @@ extension ChatViewController {
     
     
     private func handleItem(response: AIResponse, operation: Operation) {
-        if let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty {
-            if let dict = messages.first, let speech = dict["speech"] as? String {
-                addMessage(withId: senderId, name: senderDisplayName, text: speech)
-                addImageMedia(image: UIImage(named: "fruits") ?? UIImage()) // TODO: change it later based on category
+        
+        guard let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty,
+            let dict = messages.first, let speech = dict["speech"] as? String else { return }
+        
+        // add message
+        addMessage(withId: senderId, name: senderDisplayName, text: speech)
+
+        let texts = speech.components(separatedBy: "#")
+        guard texts.count > 1, let lastText = texts.last else { return }
+        
+        // handle shopping list along with image
+        let productSpecifications = lastText.components(separatedBy: ",")
+        if productSpecifications.count > 1 {
+            
+            let category = productSpecifications[0]
+            let subCategory = productSpecifications[1]
+            
+            guard let productCategory = ProductCategory(rawValue: category) else { return }
+            
+            addImageMedia(image: productCategory.image())
+            
+            switch operation {
+            case .add:
+                let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                ProductsManager.shared.shoppingList[productCategory]?.append(basicProduct)
                 
-                switch operation {
-                case .add: print("handle local data-base .... added")
-                case .remove: print("handle local data-base .... remove item")
-                case .none: break
+            case .remove:
+                if let basicProducts = ProductsManager.shared.shoppingList[productCategory] {
+                    let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                    let tempBasicProducts = basicProducts.filter { $0 != basicProduct }
+                    ProductsManager.shared.shoppingList[productCategory] = tempBasicProducts
                 }
+                
+            case .none: break
             }
         }
     }

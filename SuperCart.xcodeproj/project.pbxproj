@@ -97,7 +97,6 @@
 			children = (
 				ADB157D2224688BB000A2135 /* ChatViewController.swift */,
 				ADB157D4224688E0000A2135 /* SpeechManager.swift */,
-				AD73B72A224926E000A98CC2 /* ProductsManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -138,6 +137,7 @@
 				ADB157B22246869A000A2135 /* AppDelegate.swift */,
 				ADB157B42246869B000A2135 /* LoginViewController.swift */,
 				AD73B72D2249314B00A98CC2 /* InputViewController.swift */,
+				AD73B72A224926E000A98CC2 /* ProductsManager.swift */,
 				D4A3BFA822494B3C008FC597 /* ProductList */,
 				D4A3BFA32248F0D9008FC597 /* Utils */,
 				D4A3BF9E2248EE7F008FC597 /* Entities */,
