@@ -9,9 +9,9 @@
 import UIKit
 
 struct BasicProduct {
-    let prodName: String
+    let title: String
     let category: String
-    let image: UIImage
+    let subCategory: String
 }
 
 enum ProductCategory: String {
