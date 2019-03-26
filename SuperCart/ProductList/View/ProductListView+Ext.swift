@@ -24,7 +24,7 @@ struct ProductListViewModel {
 
 extension ProductListView {
     func getViewModel(_ categories: [Category]) -> ProductListViewModel {
-        let sections = categories.map { (category) -> T in
+        let sections = categories.map { (category) -> ProductListViewSection in
             var cells: [ProductListViewCell] = []
             let productCell = ProductListViewCell.productCell(category.products)
             cells.append(productCell)

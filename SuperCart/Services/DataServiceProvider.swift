@@ -17,25 +17,6 @@ enum DataSourceError: Error {
 
 final class DataServiceProvider {
         
-    // get products details
-    func getProducts(completionHandler: @escaping (([Product])->())) throws {
-        let urlStr = Constants.DataService.endPoint + "/products/getProducts"
-        guard let url = URL(string: urlStr), !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
-        
-        NetworkLayer.getData(url: url, successBlock: { (response) in
-            // success
-            DispatchQueue.main.async {
-                guard let response = response as? [String: Any], let records = response[Constants.Products.records] as? [[String:Any]], !records.isEmpty else { return }
-                let record = Record(dict: records[0])
-                if let products = record.attributes?.records {
-                    completionHandler(products)
-                }
-            }
-        }) { (error) in
-            print(error.debugDescription)
-        }
-    }
-    
     // get products list
     func getProductsList(completionHandler: @escaping (([Category])->())) throws {
         let urlStr = Constants.DataService.endPoint + "/products/getProductsList"
@@ -45,7 +26,11 @@ final class DataServiceProvider {
             // success
             DispatchQueue.main.async {
                 guard let response = response as? [String: Any], let categories = response[Constants.Categories.categories] as? [[String:Any]] else { return }
-                completionHandler(categories)
+                let categoriesArr = categories.map({ (category) -> Category in
+                    let categoryObj = Category(dict: category)
+                    return categoryObj
+                })
+                completionHandler(categoriesArr)
             }
         }) { (error) in
             print(error.debugDescription)

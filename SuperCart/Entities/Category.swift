@@ -15,8 +15,8 @@ struct Category {
     let messages: [String]
 
     init(dict: [String: Any]) {
-        name = dict[Constants.Category.name] as? Int ?? 0
-        if let productsArr = dict[Constants.Category.products] as? [String: Any] {
+        name = dict[Constants.Category.name] as? String ?? ""
+        if let productsArr = dict[Constants.Category.products] as? [[String: Any]] {
             var  products : [Product] = []
             for product in productsArr {
                 let productObj = Product(dict: product)
