@@ -270,7 +270,9 @@ extension ChatViewController {
     }
     
     private func searchShoppingList() {
-        print("find out the products: \(ProductsManager.shared.shoppingList). Push product list view controller")
+        let productListController = ProductListViewController()
+        productListController.productList = ProductsManager.shared.getProductListForSearchAPI()
+        navigationController?.pushViewController(productListController, animated: true)
     }
 }
 
