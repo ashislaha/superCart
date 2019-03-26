@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct AddedProduct {
+struct BasicProduct {
     let prodName: String
     let category: String
     let image: UIImage
@@ -31,7 +31,7 @@ class ProductsManager {
     
     static let shared = ProductsManager()
     
-    var shoppingList: [ProductCategory: [AddedProduct]] = [
+    var shoppingList: [ProductCategory: [BasicProduct]] = [
         .milks: [],
         .oil: [],
         .rice: [],

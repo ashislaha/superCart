@@ -9,7 +9,6 @@
 import UIKit
 
 class InputViewController: UIViewController {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,7 @@ class InputViewController: UIViewController {
     }
     
     @IBAction func chatWithWalmartRobo(_ sender: UIButton) {
-        
+        guard let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
+        navigationController?.pushViewController(chatVC, animated: true)
     }
 }

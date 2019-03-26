@@ -16,7 +16,7 @@ protocol ChatDelegate: class {
 }
 
 enum Operation {
-    case add, remove
+    case add, remove, none
 }
 
 struct Message {
@@ -85,6 +85,8 @@ class ChatViewController: JSQMessagesViewController {
     //MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Ask WalRobo"
         self.senderId = senderIdentifier
         self.senderDisplayName = displayName
         
@@ -205,6 +207,7 @@ extension ChatViewController {
             
             guard let response = response as? AIResponse, let strongSelf = self, let action = response.result.action else { return }
             switch action {
+            case "input.welcome": strongSelf.handleItem(response: response, operation: .none)
             case "input.add": strongSelf.handleItem(response: response, operation: .add)
             case "input.delete": strongSelf.handleItem(response: response, operation: .remove)
             case "input.showList": strongSelf.handleShowWishList()
@@ -226,28 +229,30 @@ extension ChatViewController {
                 
                 switch operation {
                 case .add: print("handle local data-base .... added")
-                    
                 case .remove: print("handle local data-base .... remove item")
+                case .none: break
                 }
             }
         }
     }
     
     private func handleShowWishList() {
-//        guard !StoreModel.shared.shoppingList.isEmpty else { return }
-//        addImageMedia(image: #imageLiteral(resourceName: "fullList"))
-//        for (_, list) in StoreModel.shared.shoppingList {
-//            for each in list {
-//                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.prodName)
-//                addImageMedia(image: each.image)
-//            }
-//        }
+        guard !ProductsManager.shared.shoppingList.isEmpty else { return }
+        for (_, list) in ProductsManager.shared.shoppingList {
+            for each in list {
+                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.prodName)
+                addImageMedia(image: each.image)
+            }
+        }
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             messages.append(message)
             finishSendingMessage()
+            if id == senderId {
+                SpeechManager.shared.speak(text: text)
+            }
         }
     }
     

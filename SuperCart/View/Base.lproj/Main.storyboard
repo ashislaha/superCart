@@ -101,6 +101,21 @@
             </objects>
             <point key="canvasLocation" x="1783" y="91"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="6dO-s4-ubg">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="xA1-Xe-T8X" customClass="ChatViewController" customModule="SuperCart" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tkq-PS-vRo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="98K-c5-Rme"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDl-D4-rh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2519" y="507"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="T3B-Af-cf6">
             <objects>
