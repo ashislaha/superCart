@@ -10,7 +10,6 @@ import UIKit
 import ApiAI
 import IQKeyboardManagerSwift
 import UserNotifications
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // firebase
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
         
         // initialise dialogflow
         let configuration = AIDefaultConfiguration()
-        configuration.clientAccessToken = "de465ca6dabf41bc82e93b40be6d30a3"
+        configuration.clientAccessToken = "594cfd0d08084f15a90c9615da97fd90"
         let apiai = ApiAI.shared()
         apiai?.configuration = configuration
         

@@ -15,6 +15,10 @@ protocol ChatDelegate: class {
     
 }
 
+enum Operation {
+    case add, remove, none
+}
+
 struct Message {
     static let title = "title"
     static let imageUrl = "imageUrl"
@@ -25,25 +29,25 @@ struct Message {
 
 class OutgoingAvatar:NSObject, JSQMessageAvatarImageDataSource {
     func avatarImage() -> UIImage! {
-        return #imageLiteral(resourceName: "Walmart")
+        return #imageLiteral(resourceName: "user-avatar")
     }
     func avatarHighlightedImage() -> UIImage! {
-        return #imageLiteral(resourceName: "Walmart")
+        return #imageLiteral(resourceName: "user-avatar")
     }
     func avatarPlaceholderImage() -> UIImage! {
-        return #imageLiteral(resourceName: "Walmart")
+        return #imageLiteral(resourceName: "user-avatar")
     }
 }
 
 class IncomingAvatar:NSObject, JSQMessageAvatarImageDataSource {
     func avatarImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user_avatar")
+        return #imageLiteral(resourceName: "user-avatar")
     }
     func avatarHighlightedImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user_avatar")
+        return #imageLiteral(resourceName: "user-avatar")
     }
     func avatarPlaceholderImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user_avatar")
+        return #imageLiteral(resourceName: "user-avatar")
     }
 }
 
@@ -56,14 +60,14 @@ class ChatViewController: JSQMessagesViewController {
     private let userId = "userId"
     private let userName = "user_name"
     private let initialStatement = "Say something, I'm listening!"
-    private var finalIndex: Int = 0
+
     private var dialogflowMessages: [[String: Any]] = []
     private var category: String = ""
     private var productName: String = ""
     private var timer: Timer?
     private var index = 0
-    private var initialMessages: [Any] = ["Hi Ashis", "Welcome to SuperCart"]
     private var endIndex = 0
+    private let initialMessage = "Hi Ashis. I am Walmart-Bot: WalRobo. Welcome to SuperCart"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -81,19 +85,18 @@ class ChatViewController: JSQMessagesViewController {
     //MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Ask WalRobo"
         self.senderId = senderIdentifier
         self.senderDisplayName = displayName
         
         SpeechManager.shared.delegate = self
         addMicButton()
         
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 30, height: 30)
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: 30, height: 30)
+        collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 30, height: 30)
+        collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: 30, height: 30)
         
-        let deadlineTime = DispatchTime.now() + .seconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: { [weak self] in
-            self?.populateWithWelcomeMessage()
-        })
+        addMessage(withId: senderId, name: senderDisplayName, text: initialMessage)
     }
     
     func addMicButton() {
@@ -195,29 +198,7 @@ class ChatViewController: JSQMessagesViewController {
 
 extension ChatViewController {
     
-    func populateWithWelcomeMessage() {
-        addMessage(withId: senderId, name: senderDisplayName, text: "Hi I am Walmart-Bot: WalRobo.")
-        endIndex = initialMessages.count
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatViewController.showInitialiseMessage), userInfo: nil, repeats: true)
-    }
-    
-    @objc func showInitialiseMessage() {
-        if index == endIndex {
-            SpeechManager.shared.speak(text: "Do you want to create a shopping list?")
-            timer?.invalidate()
-            timer = nil
-        } else {
-            let message = initialMessages[index]
-            if let message = message as? String {
-                addMessage(withId: senderId, name: senderDisplayName, text: message)
-            } else if let image = message as? UIImage {
-                addImageMedia(image: image)
-            }
-            index += 1
-        }
-    }
-    
-    func performQuery(senderId:String,name:String,text:String) {
+    func performQuery(senderId:String, name:String, text:String) {
         guard !text.isEmpty else { return }
         let request = ApiAI.shared().textRequest()
         request?.query = text
@@ -226,98 +207,57 @@ extension ChatViewController {
             
             guard let response = response as? AIResponse, let strongSelf = self, let action = response.result.action else { return }
             switch action {
-            case "input.searchproduct": strongSelf.handlProductSearch(response: response)
-            case "input.navigation": strongSelf.handleNavigation(response: response)
-            case "input.userOffer": strongSelf.userOfferHandler(response: response)
-            case "input.startShopping": strongSelf.handleShoppingList(response: response)
-            case "input.showUserWishList": strongSelf.handleShowWishList()
-            case "input.clearUserWishList": strongSelf.removeWishList()
-            default: strongSelf.defaultHandling(response: response)
+            case "input.welcome": strongSelf.handleItem(response: response, operation: .none)
+            case "input.add": strongSelf.handleItem(response: response, operation: .add)
+            case "input.delete": strongSelf.handleItem(response: response, operation: .remove)
+            case "input.showList": strongSelf.handleShowWishList()
+            default: break
             }
             
             }, failure: { (request, error) in
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "some fetching error at dialogflow")
         })
         ApiAI.shared().enqueue(request)
     }
     
-    private func removeWishList() {
-        addImageMedia(image: #imageLiteral(resourceName: "clearCart"))
-        addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is empty now.")
-//        StoreModel.shared.shoppingList = [
-//            .fruits: [],
-//            .groceries: [],
-//            .shoes: [],
-//            .mobiles: [],
-//            .laptops: [],
-//            .fashion: []
-//        ]
-    }
     
-    private func handleShowWishList() {
-//        guard !StoreModel.shared.shoppingList.isEmpty else { return }
-//        addImageMedia(image: #imageLiteral(resourceName: "fullList"))
-//        for (_, list) in StoreModel.shared.shoppingList {
-//            for each in list {
-//                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.prodName)
-//                addImageMedia(image: each.image)
-//            }
-//        }
-    }
-    
-    private func handleShoppingList(response: AIResponse) {
-//        addMessage(withId: senderId, name: senderDisplayName, text: "Got your list, Let's start shopping")
-//        // initialise the AR kit with
-//        guard let arVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ARViewController") as? ARViewController else { return }
-//        arVC.isStartShopping = true
-//        navigationController?.pushViewController(arVC, animated: true)
-    }
-    
-    private func handlProductSearch(response: AIResponse) {
+    private func handleItem(response: AIResponse, operation: Operation) {
         if let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty {
             if let dict = messages.first, let speech = dict["speech"] as? String {
                 addMessage(withId: senderId, name: senderDisplayName, text: speech)
-            } else {
-                dialogflowMessages = messages
-                finalIndex = messages.count
-                productsDetailsWithImages(index: 0)
-                category = messages[0][Message.subtitle] as? String ?? ""
-                productName = messages[0][Message.productName] as? String ?? ""
+                addImageMedia(image: UIImage(named: "fruits") ?? UIImage()) // TODO: change it later based on category
+                
+                switch operation {
+                case .add: print("handle local data-base .... added")
+                case .remove: print("handle local data-base .... remove item")
+                case .none: break
+                }
             }
         }
     }
     
-    private func productsDetailsWithImages(index: Int) {
-        if index == finalIndex {
-            finalIndex = 0
-            dialogflowMessages = []
-        } else {
-            let productDetails = dialogflowMessages[index][Message.title] as? String ?? ""
-            let imageUrl = dialogflowMessages[index][Message.imageUrl] as? String ?? ""
-            addMessage(withId: senderId, name: senderDisplayName, text: productDetails)
-            addMedia(imageUrl: imageUrl, callBack: { [weak self] in
-                self?.productsDetailsWithImages(index: index+1)
-            })
+    private func handleShowWishList() {
+        guard !ProductsManager.shared.shoppingList.isEmpty else { return }
+        for (_, list) in ProductsManager.shared.shoppingList {
+            for each in list {
+                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.prodName)
+                addImageMedia(image: each.image)
+            }
         }
-    }
-    
-    private func handleNavigation(response: AIResponse) {
-        guard let textResponse = response.result.fulfillment.speech else { return }
-        
-//        if let department = ProductDepartment(rawValue: textResponse), let dest = StoreModel.shared.productToNodeInt[department] {
-//            SpeechManager.shared.speak(text: "Navigating to " + textResponse)
-//            finishReceivingMessage()
-//            delegate?.navigate(to: ProductDepartment(rawValue: textResponse)!)
-//            navigationController?.popViewController(animated: true)
-//        } else{
-//            addMessage(withId: senderId, name: senderDisplayName, text: "Product store doesn't exist");
-//            SpeechManager.shared.speak(text: "Product store does not exist")
-//            finishReceivingMessage()
-//        }
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+            messages.append(message)
+            finishSendingMessage()
+            if id == senderId {
+                SpeechManager.shared.speak(text: text)
+            }
+        }
+    }
+    
+    private func addImageMedia(image: UIImage) {
+        if let media = JSQPhotoMediaItem(image: image), let message = JSQMessage(senderId: senderIdentifier, displayName: displayName, media: media) {
             messages.append(message)
             finishSendingMessage()
         }
@@ -339,37 +279,12 @@ extension ChatViewController {
         }
         dataTask.resume()
     }
-    
-    private func addImageMedia(image: UIImage) {
-        if let media = JSQPhotoMediaItem(image: image), let message = JSQMessage(senderId: senderIdentifier, displayName: displayName, media: media) {
-            messages.append(message)
-            finishSendingMessage()
-        }
-    }
-    
-    private func userOfferHandler(response: AIResponse){
-        guard let textResponse = response.result.fulfillment.speech else { return }
-        let responseArray = textResponse.components(separatedBy: "\n\n")
-        var i:String
-        SpeechManager.shared.speak(text: "Here are the offers as per your past history")
-        for i in responseArray {
-            if(i != ""){
-                addMessage(withId: senderId, name: senderDisplayName, text: i)
-            }
-        }
-    }
-    
-    private func defaultHandling(response: AIResponse) {
-        guard let textResponse = response.result.fulfillment.speech else { return }
-        SpeechManager.shared.speak(text: textResponse)
-        addMessage(withId: senderId, name: senderDisplayName, text: textResponse)
-    }
 }
 
 
 // MARK: Speech Manager delegate
 
-extension ChatViewController:SpeechManagerDelegate {
+extension ChatViewController: SpeechManagerDelegate {
     func didStartedListening(status:Bool) {
         if status {
             self.inputToolbar.contentView.textView.text = initialStatement
