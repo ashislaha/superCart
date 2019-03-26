@@ -9,13 +9,13 @@
 import UIKit
 
 struct BasicProduct {
-    let prodName: String
+    let title: String
     let category: String
-    let image: UIImage
+    let subCategory: String
 }
 
 enum ProductCategory: String {
-    case milks
+    case dairy
     case oil
     case rice
     case sugar
@@ -32,7 +32,7 @@ class ProductsManager {
     static let shared = ProductsManager()
     
     var shoppingList: [ProductCategory: [BasicProduct]] = [
-        .milks: [],
+        .dairy: [],
         .oil: [],
         .rice: [],
         .sugar: [],
@@ -43,5 +43,17 @@ class ProductsManager {
         .coffee: [],
         .noodles: []
     ]
+    
+    func getProductListForSearchAPI() -> [[String: String]] {
+        guard !shoppingList.isEmpty else { return [] }
+        
+        var productList: [[String: String]] = []
+        for (_, value) in shoppingList {
+            for each in value {
+                productList.append(["category": each.category, "subCategory": each.subCategory ])
+            }
+        }
+        return productList
+    }
 }
 

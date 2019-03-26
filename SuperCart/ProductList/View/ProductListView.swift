@@ -17,13 +17,4 @@ class ProductListView: UIView {
 
     var model: ProductListViewModel?
     weak var delegate: ProductListProtocol?
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

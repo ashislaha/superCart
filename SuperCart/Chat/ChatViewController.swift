@@ -181,17 +181,6 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressAccessoryButton(_ sender: UIButton) {
         performQuery(senderId: userId, name: userName, text: "Multimedia")
     }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-        
-//        guard let test = self.messages[indexPath.row].media, let photoItem = test as? JSQPhotoMediaItem,
-//            let selectedImage = photoItem.image, !self.productName.isEmpty,!category.isEmpty, let departmanet = ProductDepartment(rawValue: category.lowercased()) else { return }
-//        let wishList = WishList(prodName: self.productName, category: category, image: selectedImage)
-//        
-//        StoreModel.shared.shoppingList[departmanet]!.append(wishList)
-//        addImageMedia(image: #imageLiteral(resourceName: "addCart"))
-//        addMessage(withId: senderId, name: displayName, text: "\(productName) added to your shopping list.")
-    }
 }
 
 // MARK: Dialogflow handling
@@ -211,6 +200,7 @@ extension ChatViewController {
             case "input.add": strongSelf.handleItem(response: response, operation: .add)
             case "input.delete": strongSelf.handleItem(response: response, operation: .remove)
             case "input.showList": strongSelf.handleShowWishList()
+            case "input.search": strongSelf.searchShoppingList()
             default: break
             }
             
@@ -240,8 +230,7 @@ extension ChatViewController {
         guard !ProductsManager.shared.shoppingList.isEmpty else { return }
         for (_, list) in ProductsManager.shared.shoppingList {
             for each in list {
-                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.prodName)
-                addImageMedia(image: each.image)
+                addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.title)
             }
         }
     }
@@ -278,6 +267,12 @@ extension ChatViewController {
             }
         }
         dataTask.resume()
+    }
+    
+    private func searchShoppingList() {
+        let productListController = ProductListViewController()
+        productListController.productList = ProductsManager.shared.getProductListForSearchAPI()
+        navigationController?.pushViewController(productListController, animated: true)
     }
 }
 

@@ -10,6 +10,8 @@ import UIKit
 
 class ProductListViewController: UIViewController {
 
+    public var productList: [[String: String]] = []
+    
     // product list view
     private let productListView: ProductListView = {
         let productListView = ProductListView()
@@ -29,8 +31,9 @@ class ProductListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
+        title = "Product List"
         layoutSetUp()
     }
     
@@ -43,17 +46,6 @@ class ProductListViewController: UIViewController {
         addToCartView.anchors(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
         addToCartView.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //MARK:- ProductListProtocol
