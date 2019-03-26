@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProductListProtocol: class {
     func itemSelected(model: Product, index: Int)
+    func itemRemoved(model: Product, index: Int)
 }
 
 class ProductListView: UIView {

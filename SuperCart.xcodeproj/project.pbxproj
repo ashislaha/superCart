@@ -18,6 +18,7 @@
 		ADB157C82246869D000A2135 /* SuperCartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157C72246869D000A2135 /* SuperCartTests.swift */; };
 		ADB157D3224688BB000A2135 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157D2224688BB000A2135 /* ChatViewController.swift */; };
 		ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157D4224688E0000A2135 /* SpeechManager.swift */; };
+		D44D99A72249FBC200CDF544 /* AddToCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D99A62249FBC200CDF544 /* AddToCartView.swift */; };
 		D4A3BF9C2248EE4F008FC597 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A3BF9A2248EE4F008FC597 /* NetworkLayer.swift */; };
 		D4A3BF9D2248EE4F008FC597 /* DataServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A3BF9B2248EE4F008FC597 /* DataServiceProvider.swift */; };
 		D4A3BFA12248EE80008FC597 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A3BF9F2248EE7F008FC597 /* Product.swift */; };
@@ -61,6 +62,7 @@
 		ADB157C92246869D000A2135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB157D2224688BB000A2135 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		ADB157D4224688E0000A2135 /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+		D44D99A62249FBC200CDF544 /* AddToCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartView.swift; sourceTree = "<group>"; };
 		D4A3BF9A2248EE4F008FC597 /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		D4A3BF9B2248EE4F008FC597 /* DataServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceProvider.swift; sourceTree = "<group>"; };
 		D4A3BF9F2248EE7F008FC597 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				D4A3BFAF22495124008FC597 /* ProductListView.swift */,
 				D4A3BFAB2249509C008FC597 /* ProductListView+Ext.swift */,
+				D44D99A62249FBC200CDF544 /* AddToCartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				D4A3BFA12248EE80008FC597 /* Product.swift in Sources */,
 				D4A3BFAA22494B69008FC597 /* ProductListViewController.swift in Sources */,
 				D4A3BFA62248F0D9008FC597 /* Constants.swift in Sources */,
+				D44D99A72249FBC200CDF544 /* AddToCartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

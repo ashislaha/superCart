@@ -10,26 +10,27 @@ import UIKit
 
 // MARK:- Anchoring views
 extension UIView {
-    func anchors(top: NSLayoutYAxisAnchor? = nil, topConstants: CGFloat = 0.0, leading: NSLayoutXAxisAnchor? = nil, leadingConstants: CGFloat = 0.0, bottom: NSLayoutYAxisAnchor? = nil, bottomConstants: CGFloat = 0.0, trailing: NSLayoutXAxisAnchor? = nil, trailingConstants: CGFloat = 0.0, heightConstants: CGFloat = 0.0, widthConstants: CGFloat = 0.0, centerX: NSLayoutXAxisAnchor? = nil, centerXConstants: CGFloat = 0.0, centerY: NSLayoutYAxisAnchor? = nil, centerYConstants: CGFloat = 0.0 ) {
+    func anchors(top: NSLayoutYAxisAnchor? = nil, leading: NSLayoutXAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, trailing: NSLayoutXAxisAnchor? = nil,  centerX: NSLayoutXAxisAnchor? = nil, centerXConstants: CGFloat = 0.0, centerY: NSLayoutYAxisAnchor? = nil, centerYConstants: CGFloat = 0.0, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
+        
         // enable auto-layout for that view
         translatesAutoresizingMaskIntoConstraints = false
         if let top = top {
-            topAnchor.constraint(equalTo: top, constant: topConstants).isActive = true
+            topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
         }
         if let leading = leading {
-            leadingAnchor.constraint(equalTo: leading, constant: leadingConstants).isActive = true
+            leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
         }
         if let bottom = bottom {
-            bottomAnchor.constraint(equalTo: bottom, constant: bottomConstants).isActive = true
+            bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom).isActive = true
         }
         if let trailing = trailing {
-            trailingAnchor.constraint(equalTo: trailing, constant: trailingConstants).isActive = true
+            trailingAnchor.constraint(equalTo: trailing, constant: -padding.right).isActive = true
         }
-        if heightConstants > 0 {
-            heightAnchor.constraint(equalToConstant: heightConstants).isActive = true
+        if size.height > 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
-        if widthConstants > 0 {
-            widthAnchor.constraint(equalToConstant: widthConstants).isActive = true
+        if size.width > 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
         if let centerX = centerX {
             centerXAnchor.constraint(equalTo: centerX, constant: centerXConstants).isActive = true

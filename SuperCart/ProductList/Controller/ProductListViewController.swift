@@ -17,7 +17,15 @@ class ProductListViewController: UIViewController {
         return productListView
     }()
     
+    // add to cart view
+    private let addToCartView: AddToCartView = {
+        let addToCartView = AddToCartView()
+        addToCartView.translatesAutoresizingMaskIntoConstraints = false
+        return addToCartView
+    }()
+
     let dataSourceProvider = DataServiceProvider()
+    var selectedProducts: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +37,11 @@ class ProductListViewController: UIViewController {
     private func layoutSetUp() {
         view.addSubview(productListView)
         productListView.delegate = self
+        addToCartView.delegate = self
         
-        productListView.anchors(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        productListView.anchors(top: view.topAnchor, leading: view.leadingAnchor, bottom: addToCartView.topAnchor, trailing: view.trailingAnchor)
+        addToCartView.anchors(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        addToCartView.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
 
     /*
@@ -48,6 +59,17 @@ class ProductListViewController: UIViewController {
 //MARK:- ProductListProtocol
 extension ProductListViewController: ProductListProtocol {
     func itemSelected(model: Product, index: Int) {
+        
+    }
+    
+    func itemRemoved(model: Product, index: Int) {
+        
+    }
+}
+
+//MARK:- AddToCartProtocol
+extension ProductListViewController: AddToCartProtocol {
+    func addToCart() {
         
     }
 }
