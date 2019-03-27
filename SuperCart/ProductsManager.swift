@@ -65,16 +65,19 @@ class ProductsManager {
         .noodles: []
     ]
     
-    func getProductListForSearchAPI() -> [[String: String]] {
-        guard !shoppingList.isEmpty else { return [] }
+    func getProductListForSearchAPI() -> [String: Any] {
+        guard !shoppingList.isEmpty else { return [:] }
         
         var productList: [[String: String]] = []
         for (_, value) in shoppingList {
             for each in value {
-                productList.append(["category": each.category, "subCategory": each.subCategory ])
+                productList.append(["cat": each.category, "subCat": each.subCategory ])
             }
         }
-        return productList
+        return [
+            "id": username ?? "",
+            "items": productList
+        ]
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class ProductListViewController: UIViewController {
 
-    public var productList: [[String: String]] = []
+    public var productListParams: [String: Any] = [:]
     
     // product list view
     private let productListView: ProductListView = {
