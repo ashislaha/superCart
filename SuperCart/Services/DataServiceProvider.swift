@@ -18,18 +18,10 @@ enum DataSourceError: Error {
 final class DataServiceProvider {
         
     // get products list
-    func getProductsList(products: [[String: Any]], completionHandler: @escaping (([Category])->())) throws {
-        let urlStr = "http://demo2354372.mockable.io/productList" //Constants.DataService.endPoint + "/productList"
+    func getProductsList(productsList: [String: Any], completionHandler: @escaping (([Category])->())) throws {
+        let urlStr = Constants.DataService.endPoint + "/productList"
         guard !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
-        let items: [[String: Any]] = [[
-            "cat": "dairy",
-            "subCat": "milk"
-            ]]
-        let productsDict: [String: Any] = [
-            "id": CurrentSession.sharedInstance.userName ?? "",
-            "items": items
-        ]
-        NetworkLayer.postData(urlString: urlStr, bodyDict: productsDict, requestType: .POST, successBlock: { (response) in
+        NetworkLayer.postData(urlString: urlStr, bodyDict: productsList, requestType: .POST, successBlock: { (response) in
             // success
             DispatchQueue.main.async {
                 guard let response = response as? [String: Any],

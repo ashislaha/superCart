@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81D39003957D80BF5D37D2CC /* Pods_SuperCartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465EEB27AECD5698CC419856 /* Pods_SuperCartTests.framework */; };
-		AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72A224926E000A98CC2 /* ProductsManager.swift */; };
+		AD73B72B224926E000A98CC2 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72A224926E000A98CC2 /* AppManager.swift */; };
 		AD73B72E2249314B00A98CC2 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD73B72D2249314B00A98CC2 /* InputViewController.swift */; };
 		ADB157B32246869A000A2135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B22246869A000A2135 /* AppDelegate.swift */; };
 		ADB157B52246869B000A2135 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB157B42246869B000A2135 /* LoginViewController.swift */; };
@@ -54,7 +54,7 @@
 		7105189D18E7B3DCC1B37855 /* Pods_SuperCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCart.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCart/Pods-SuperCart.release.xcconfig"; sourceTree = "<group>"; };
 		AC47269A2105EF8F990DA31D /* Pods-SuperCartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperCartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperCartTests/Pods-SuperCartTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AD73B72A224926E000A98CC2 /* ProductsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsManager.swift; sourceTree = "<group>"; };
+		AD73B72A224926E000A98CC2 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		AD73B72D2249314B00A98CC2 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		ADB157AF2246869A000A2135 /* SuperCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADB157B22246869A000A2135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +75,7 @@
 		D44D99AF224BE7E000CDF544 /* EditQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuantityView.swift; sourceTree = "<group>"; };
 		D44D99B2224C4D3900CDF544 /* CurrentSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSession.swift; sourceTree = "<group>"; };
 		D44D99B4224CB55800CDF544 /* ProductListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListSectionHeaderView.swift; sourceTree = "<group>"; };
+		ADDF64C3224C7C5600458856 /* SuperCart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperCart.entitlements; sourceTree = "<group>"; };
 		D4A3BF9A2248EE4F008FC597 /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		D4A3BF9B2248EE4F008FC597 /* DataServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceProvider.swift; sourceTree = "<group>"; };
 		D4A3BF9F2248EE7F008FC597 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 			children = (
 				ADB157D2224688BB000A2135 /* ChatViewController.swift */,
 				ADB157D4224688E0000A2135 /* SpeechManager.swift */,
-				AD73B72A224926E000A98CC2 /* ProductsManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -149,7 +149,9 @@
 		ADB157B12246869A000A2135 /* SuperCart */ = {
 			isa = PBXGroup;
 			children = (
+				ADDF64C3224C7C5600458856 /* SuperCart.entitlements */,
 				ADB157B22246869A000A2135 /* AppDelegate.swift */,
+				AD73B72A224926E000A98CC2 /* AppManager.swift */,
 				ADB157B42246869B000A2135 /* LoginViewController.swift */,
 				AD73B72D2249314B00A98CC2 /* InputViewController.swift */,
 				D4A3BFA822494B3C008FC597 /* ProductList */,
@@ -312,6 +314,11 @@
 				TargetAttributes = {
 					ADB157AE2246869A000A2135 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					ADB157C22246869D000A2135 = {
 						CreatedOnToolsVersion = 10.1;
@@ -402,7 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD73B72B224926E000A98CC2 /* ProductsManager.swift in Sources */,
+				AD73B72B224926E000A98CC2 /* AppManager.swift in Sources */,
 				ADB157B52246869B000A2135 /* LoginViewController.swift in Sources */,
 				ADB157D5224688E0000A2135 /* SpeechManager.swift in Sources */,
 				D4A3BFA72248F0D9008FC597 /* UIView+Ext.swift in Sources */,
@@ -586,6 +593,7 @@
 			baseConfigurationReference = 0412B5DB3AE41C7FF46876BA /* Pods-SuperCart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SuperCart/SuperCart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3Z9URG96M;
 				INFOPLIST_FILE = SuperCart/Info.plist;
@@ -605,6 +613,7 @@
 			baseConfigurationReference = A3C7C54E72229E563816BF1F /* Pods-SuperCart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SuperCart/SuperCart.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3Z9URG96M;
 				INFOPLIST_FILE = SuperCart/Info.plist;

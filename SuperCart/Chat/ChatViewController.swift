@@ -67,7 +67,7 @@ class ChatViewController: JSQMessagesViewController {
     private var timer: Timer?
     private var index = 0
     private var endIndex = 0
-    private let initialMessage = "Hi Ashis. I am Walmart-Bot: WalRobo. Welcome to SuperCart"
+    private let initialMessage = "Hi Ashis. I am Walmart-Bot: WalRobo. Welcome to PaperCart"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -78,7 +78,12 @@ class ChatViewController: JSQMessagesViewController {
     private var tapped = false {
         didSet {
             tapped ? micButton?.setTitle("Stop", for: .normal): micButton?.setTitle("Speech", for: .normal)
-            tapped ? SpeechManager.shared.startRecording() : SpeechManager.shared.stopRecording()
+            if tapped {
+                SpeechManager.shared.startRecording()
+            } else {
+                SpeechManager.shared.stopRecording()
+                self.inputToolbar.contentView.textView.text = ""
+            }
         }
     }
     
@@ -212,14 +217,50 @@ extension ChatViewController {
     
     
     private func handleItem(response: AIResponse, operation: Operation) {
-        if let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty {
-            if let dict = messages.first, let speech = dict["speech"] as? String {
-                addMessage(withId: senderId, name: senderDisplayName, text: speech)
-                addImageMedia(image: UIImage(named: "fruits") ?? UIImage()) // TODO: change it later based on category
+        
+        guard let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty,
+            let dict = messages.first, let speech = dict["speech"] as? String else { return }
+        
+        // add message
+        if operation == .none {
+            addMessage(withId: senderId, name: senderDisplayName, text: speech)
+
+        } else if speech == "" {
+            switch operation {
+            case .add, .remove:
+                addMessage(withId: senderId, name: senderDisplayName, text: "The item is unavailable currently.")
+            case .none: break
+            }
+        } else {
+            
+            addMessage(withId: senderId, name: senderDisplayName, text: speech)
+            
+            let texts = speech.components(separatedBy: "#")
+            guard texts.count > 1, let lastText = texts.last else { return }
+            
+            // handle shopping list along with image
+            let productSpecifications = lastText.components(separatedBy: ",")
+            if productSpecifications.count > 1 {
+                
+                let category = productSpecifications[0]
+                let subCategory = productSpecifications[1]
+                
+                guard let productCategory = ProductCategory(rawValue: category) else { return }
+                
+                addImageMedia(image: productCategory.image())
                 
                 switch operation {
-                case .add: print("handle local data-base .... added")
-                case .remove: print("handle local data-base .... remove item")
+                case .add:
+                    let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                    AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                    
+                case .remove:
+                    if let basicProducts = AppManager.shared.shoppingList[productCategory] {
+                        let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                        let tempBasicProducts = basicProducts.filter { $0 != basicProduct }
+                        AppManager.shared.shoppingList[productCategory] = tempBasicProducts
+                    }
+                    
                 case .none: break
                 }
             }
@@ -227,8 +268,8 @@ extension ChatViewController {
     }
     
     private func handleShowWishList() {
-        guard !ProductsManager.shared.shoppingList.isEmpty else { return }
-        for (_, list) in ProductsManager.shared.shoppingList {
+        guard !AppManager.shared.shoppingList.isEmpty else { return }
+        for (_, list) in AppManager.shared.shoppingList {
             for each in list {
                 addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.title)
             }
@@ -271,7 +312,7 @@ extension ChatViewController {
     
     private func searchShoppingList() {
         let productListController = ProductListViewController()
-        productListController.productList = ProductsManager.shared.getProductListForSearchAPI()
+        productListController.productListParams = AppManager.shared.getProductListForSearchAPI()
         navigationController?.pushViewController(productListController, animated: true)
     }
 }

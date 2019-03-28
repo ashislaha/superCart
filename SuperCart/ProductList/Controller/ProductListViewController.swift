@@ -10,9 +10,9 @@ import UIKit
 
 class ProductListViewController: UIViewController {
 
-    public var productList: [[String: String]] = [] {
+    public var productListParams: [String: Any] = [:] {
         didSet {
-            self.fetchProductList()
+        self.fetchProductList()
         }
     }
     
@@ -80,7 +80,7 @@ class ProductListViewController: UIViewController {
     
     private func fetchProductList() {
         activityIndicator.startAnimating()
-        try? dataSourceProvider.getProductsList(products: self.productList) {[weak self] (categories) in
+        try? dataSourceProvider.getProductsList(productsList: self.productListParams) {[weak self] (categories) in
             self?.activityIndicator.stopAnimating()
             self?.categories = categories
         }
