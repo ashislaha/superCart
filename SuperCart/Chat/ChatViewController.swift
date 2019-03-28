@@ -252,13 +252,13 @@ extension ChatViewController {
                 switch operation {
                 case .add:
                     let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
-                    ProductsManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                    AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
                     
                 case .remove:
-                    if let basicProducts = ProductsManager.shared.shoppingList[productCategory] {
+                    if let basicProducts = AppManager.shared.shoppingList[productCategory] {
                         let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
                         let tempBasicProducts = basicProducts.filter { $0 != basicProduct }
-                        ProductsManager.shared.shoppingList[productCategory] = tempBasicProducts
+                        AppManager.shared.shoppingList[productCategory] = tempBasicProducts
                     }
                     
                 case .none: break
@@ -268,8 +268,8 @@ extension ChatViewController {
     }
     
     private func handleShowWishList() {
-        guard !ProductsManager.shared.shoppingList.isEmpty else { return }
-        for (_, list) in ProductsManager.shared.shoppingList {
+        guard !AppManager.shared.shoppingList.isEmpty else { return }
+        for (_, list) in AppManager.shared.shoppingList {
             for each in list {
                 addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.title)
             }
@@ -312,7 +312,7 @@ extension ChatViewController {
     
     private func searchShoppingList() {
         let productListController = ProductListViewController()
-        productListController.productListParams = ProductsManager.shared.getProductListForSearchAPI()
+        productListController.productListParams = AppManager.shared.getProductListForSearchAPI()
         navigationController?.pushViewController(productListController, animated: true)
     }
 }

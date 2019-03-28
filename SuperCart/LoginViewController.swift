@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
         
         guard let inputVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputViewController") as? InputViewController else { return }
         
-        ProductsManager.shared.username = userName
+        AppManager.shared.username = userName
+        AppManager.shared.userAgent["username"] = userName
+        
         navigationController?.pushViewController(inputVC, animated: true)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ProductsManager.swift
+//  AppManager.swift
 //  SuperCart
 //
 //  Created by Ashis Laha on 3/25/19.
@@ -48,10 +48,12 @@ enum ProductCategory: String {
     }
 }
 
-class ProductsManager {
+class AppManager {
     
-    static let shared = ProductsManager()
+    static let shared = AppManager()
     public var username: String?
+    public var userAgent: [String: String] = [:]
+    
     var shoppingList: [ProductCategory: [BasicProduct]] = [
         .dairy: [],
         .oil: [],

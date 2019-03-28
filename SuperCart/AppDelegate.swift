@@ -31,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         UIApplication.shared.statusBarStyle = .lightContent
         
+        AppManager.shared.userAgent["model"] = UIDevice.current.model
+        AppManager.shared.userAgent["systemName"] = UIDevice.current.systemName
+        AppManager.shared.userAgent["systemVersion"] = UIDevice.current.systemVersion
+        
         // register notifications
         registerNotifications()
         
@@ -60,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return String(format: "%02.2hhx", $0)
         }
         let token = deviceTokens.joined()
+        AppManager.shared.userAgent["deviceToken"] = token
         print("\n\ndevice token ",token, "\n\n")
     }
     
