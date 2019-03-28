@@ -16,14 +16,16 @@ enum ProductListViewCell {
 struct ProductListViewSection {
     let name: String
     let cells: [ProductListViewCell]
+    var isOpen: Bool
 }
 
 struct ProductListViewModel {
-    let sections: [ProductListViewSection]
+    var sections: [ProductListViewSection]
 }
 
 extension ProductListView {
-    func getViewModel(_ categories: [Category]) -> ProductListViewModel {
+    func getViewModel() -> ProductListViewModel? {
+        guard let categories = self.categories else { return nil }
         let sections = categories.map { (category) -> ProductListViewSection in
             var cells: [ProductListViewCell] = []
             let productCell = ProductListViewCell.productCell(category.products)
@@ -32,7 +34,7 @@ extension ProductListView {
                 let messageCell = ProductListViewCell.messageCell(message)
                 cells.append(messageCell)
             }
-            let section = ProductListViewSection(name: category.name, cells: cells)
+            let section = ProductListViewSection(name: category.name, cells: cells, isOpen: false)
             return section
         }
         let viewModel = ProductListViewModel(sections: sections)

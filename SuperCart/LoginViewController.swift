@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
         
         guard let userName = userName.text, let password = password.text, !userName.isEmpty, !password.isEmpty else { return }
         
+        CurrentSession.sharedInstance.userName = userName
+        CurrentSession.sharedInstance.password = password
         guard let inputVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputViewController") as? InputViewController else { return }
         navigationController?.pushViewController(inputVC, animated: true)
     }

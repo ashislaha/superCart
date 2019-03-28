@@ -9,14 +9,14 @@
 import Foundation
 
 // MARK:- Product
-struct Product {
+class Product {
     let id: String
     let imageUrl: String
     let productName: String
     let price: String
     let brand: String
-    let quantity: String
-    let isPreselected: Bool
+    var quantity: Int
+    var isPreselected: Bool
     
     init(dict: [String: Any]) {
         id = dict[Constants.Product.id] as? String ?? ""
@@ -24,7 +24,7 @@ struct Product {
         productName = dict[Constants.Product.productName] as? String ?? ""
         price = dict[Constants.Product.price] as? String ?? ""
         brand = dict[Constants.Product.brand] as? String ?? ""
-        quantity = dict[Constants.Product.quantity] as? String ?? ""
+        quantity = dict[Constants.Product.quantity] as? Int ?? 0
         isPreselected = dict[Constants.Product.preselected] as? Bool ?? false
     }
 }

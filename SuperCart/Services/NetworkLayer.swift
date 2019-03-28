@@ -52,7 +52,10 @@ final class NetworkLayer {
         let session = URLSession.shared.uploadTask(with: urlRequest, from: data) { (data, response, error) in
             
             if let data = data, error == nil { // success
-                guard let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else { return }
+                guard let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) else {
+                    failureBlock?(error)
+                    return
+                }
                 // call back in back-ground thread, so please update UI elements in main-thread while computing
                 successBlock?(responseJSON)
             } else { // failure

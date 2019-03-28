@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK:- Record
-struct Category {
+class Category {
     let name: String
     let products: [Product]
     let messages: [String]

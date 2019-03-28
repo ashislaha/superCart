@@ -38,7 +38,7 @@ struct Constants {
         static let cartKey = "cartKey"
     }
     struct DataService {
-        static let endPoint = "http://static-data.surge.sh"
+        static let endPoint = "https://explore-world.herokuapp.com"
         static let defaultProductsEndPoint = "http://static-data.surge.sh/products/products.101.json" // Baby-Boy
         
     }
@@ -56,9 +56,9 @@ struct Constants {
         static let records = "records"
     }
     struct Product {
-        static let id = "skuId"
+        static let id = "id"
         static let imageUrl = "imageUrl"
-        static let productName = "productName"
+        static let productName = "name"
         static let price = "price"
         static let brand = "brand"
         static let quantity = "quantity"

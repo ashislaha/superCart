@@ -18,14 +18,25 @@ enum DataSourceError: Error {
 final class DataServiceProvider {
         
     // get products list
-    func getProductsList(completionHandler: @escaping (([Category])->())) throws {
-        let urlStr = Constants.DataService.endPoint + "/products/getProductsList"
-        guard let url = URL(string: urlStr), !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
-        
-        NetworkLayer.getData(url: url, successBlock: { (response) in
+    func getProductsList(products: [[String: Any]], completionHandler: @escaping (([Category])->())) throws {
+        let urlStr = "http://demo2354372.mockable.io/productList" //Constants.DataService.endPoint + "/productList"
+        guard !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
+        let items: [[String: Any]] = [[
+            "cat": "dairy",
+            "subCat": "milk"
+            ]]
+        let productsDict: [String: Any] = [
+            "id": CurrentSession.sharedInstance.userName ?? "",
+            "items": items
+        ]
+        NetworkLayer.postData(urlString: urlStr, bodyDict: productsDict, requestType: .POST, successBlock: { (response) in
             // success
             DispatchQueue.main.async {
-                guard let response = response as? [String: Any], let categories = response[Constants.Categories.categories] as? [[String:Any]] else { return }
+                guard let response = response as? [String: Any],
+                    let categories = response[Constants.Categories.categories] as? [[String:Any]] else {
+                    completionHandler([])
+                    return
+                }
                 let categoriesArr = categories.map({ (category) -> Category in
                     let categoryObj = Category(dict: category)
                     return categoryObj
@@ -34,6 +45,9 @@ final class DataServiceProvider {
             }
         }) { (error) in
             print(error.debugDescription)
+            DispatchQueue.main.async {
+                completionHandler([])
+            }
         }
     }
 }

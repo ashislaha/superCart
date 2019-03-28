@@ -17,7 +17,7 @@ class AddToCartView: UIView {
     private let quantityLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .green
+        label.textColor = .blue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
@@ -28,22 +28,30 @@ class AddToCartView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .green
+        label.textColor = .blue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        label.accessibilityIdentifier = ""
         return label
     }()
 
     private let addToCartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "header_close"), for: .normal)
+        button.setTitle("Add to Cart", for: .normal)
+        button.tintColor = .white
         button.isUserInteractionEnabled = true
+        button.backgroundColor = .blue
         return button
     }()
 
-    weak var delegate: AddToCartProtocol?
+    public weak var delegate: AddToCartProtocol?
+    public var quantity: Int = 0 {
+        didSet {
+            let message = quantity == 1 ? "Article in cart" : "Articles in cart"
+            quantityLabel.text = "\(quantity)"
+            messageLabel.text = message
+        }
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -55,7 +63,6 @@ class AddToCartView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .clear
         layoutSetUp()
     }
     
@@ -70,10 +77,10 @@ class AddToCartView: UIView {
         quantityLabel.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: messageLabel.leadingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 0))
         quantityLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
 
-        messageLabel.anchors(top: quantityLabel.topAnchor, bottom: quantityLabel.bottomAnchor, trailing: addToCartButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 30))
+        messageLabel.anchors(top: quantityLabel.topAnchor, bottom: quantityLabel.bottomAnchor, trailing: addToCartButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 30), size: .init(width: 60, height: 0))
         
         
-        addToCartButton.anchors(top: quantityLabel.bottomAnchor, bottom: quantityLabel.bottomAnchor, trailing: trailingAnchor, padding: .init(top: 35, left: 26, bottom: 0, right: 16))
+        addToCartButton.anchors(top: topAnchor, leading: messageLabel.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 26, bottom: 16, right: 16))
         
         addToCartButton.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
         
