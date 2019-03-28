@@ -18,7 +18,10 @@ class InputViewController: UIViewController {
     
     @IBAction func takeHandwrittenImage(_ sender: UIButton) {
         
-        
+        let alertVC = UIAlertController(title: "We are working on this to train our hand-written classfier.", message: "Get back soon", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertVC.addAction(alertAction)
+        present(alertVC, animated: true, completion: nil)
     }
     
     @IBAction func chatWithWalmartRobo(_ sender: UIButton) {
