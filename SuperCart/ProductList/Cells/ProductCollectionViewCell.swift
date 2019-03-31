@@ -111,6 +111,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         setPrice()
         setQuantity()
         selectionImage.image = model?.isPreselected ?? false ? #imageLiteral(resourceName: "add_to_list_check") : UIImage()
+        layer.borderColor = model?.isPreselected ?? false ? UIColor.green.cgColor : UIColor.lightGray.cgColor
     }
 
     // MARK:- Layout Setup
