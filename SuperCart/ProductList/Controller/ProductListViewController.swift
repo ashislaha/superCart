@@ -29,7 +29,7 @@ class ProductListViewController: UIViewController {
         addToCartView.translatesAutoresizingMaskIntoConstraints = false
         return addToCartView
     }()
-    let activityIndicator: UIActivityIndicatorView = {
+    private let activityIndicator: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .gray)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.hidesWhenStopped = true
@@ -39,14 +39,14 @@ class ProductListViewController: UIViewController {
 
 
     let dataSourceProvider = DataServiceProvider()
-    var categories: [Category] = [] {
+    var productsList: ProductsList? {
         didSet {
-            self.productListView.categories = categories
-            let selectedProducts: [Product] = categories.flatMap { (category) -> [Product] in
+            self.productListView.productsList = productsList
+            let selectedProducts: [Product] = productsList?.categories.flatMap { (category) -> [Product] in
                 return category.products.filter({ (product) -> Bool in
                     return product.isPreselected
                 })
-            }
+            } ?? []
             self.selectedProducts = selectedProducts
         }
     }
@@ -80,9 +80,25 @@ class ProductListViewController: UIViewController {
     
     private func fetchProductList() {
         activityIndicator.startAnimating()
-        try? dataSourceProvider.getProductsList(productsList: self.productListParams) {[weak self] (categories) in
+        try? dataSourceProvider.getProductsList(productsList: self.productListParams) {[weak self] (productsList) in
             self?.activityIndicator.stopAnimating()
-            self?.categories = categories
+            self?.productsList = productsList
+        }
+    }
+    
+    private func placeOrder() {
+        var items: [[String: Any]] = [[:]]
+        for product in selectedProducts {
+            let item: [String: Any] = [
+                "id": product.id,
+                "cat": product.category,
+                "subCat": product.subCategory,
+                "quantity": product.quantity
+            ]
+            items.append(item)
+        }
+        try? dataSourceProvider.placeOrder(products: items) {[weak self] (productsList) in
+            self?.activityIndicator.stopAnimating()
         }
     }
 }
@@ -97,6 +113,12 @@ extension ProductListViewController: ProductListProtocol {
         selectedProducts = selectedProducts.filter({ (product) -> Bool in
             return product.id != model.id
         })
+    }
+    
+    func viewProductDetails(_ product: Product) {
+        let productDetailsViewController = ProductDetailsViewController()
+        productDetailsViewController.model = product
+        self.navigationController?.pushViewController(productDetailsViewController, animated: true)
     }
 }
 

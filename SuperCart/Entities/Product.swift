@@ -10,21 +10,25 @@ import Foundation
 
 // MARK:- Product
 class Product {
-    let id: String
+    let id: Int
     let imageUrl: String
     let productName: String
-    let price: String
+    let price: Float
     let brand: String
     var quantity: Int
     var isPreselected: Bool
+    let category: String
+    let subCategory: String
     
     init(dict: [String: Any]) {
-        id = dict[Constants.Product.id] as? String ?? ""
+        id = dict[Constants.Product.id] as? Int ?? 0
         imageUrl = dict[Constants.Product.imageUrl] as? String ?? ""
         productName = dict[Constants.Product.productName] as? String ?? ""
-        price = dict[Constants.Product.price] as? String ?? ""
+        price = dict[Constants.Product.price] as? Float ?? 0
         brand = dict[Constants.Product.brand] as? String ?? ""
         quantity = dict[Constants.Product.quantity] as? Int ?? 0
         isPreselected = dict[Constants.Product.preselected] as? Bool ?? false
+        category = dict[Constants.Product.category] as? String ?? ""
+        subCategory = dict[Constants.Product.subCategory] as? String ?? ""
     }
 }

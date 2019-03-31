@@ -25,8 +25,8 @@ struct ProductListViewModel {
 
 extension ProductListView {
     func getViewModel() -> ProductListViewModel? {
-        guard let categories = self.categories else { return nil }
-        let sections = categories.map { (category) -> ProductListViewSection in
+        guard let categories = self.productsList?.categories else { return nil }
+        var sections = categories.map { (category) -> ProductListViewSection in
             var cells: [ProductListViewCell] = []
             let productCell = ProductListViewCell.productCell(category.products)
             cells.append(productCell)
@@ -36,6 +36,11 @@ extension ProductListView {
             }
             let section = ProductListViewSection(name: category.name, cells: cells, isOpen: false)
             return section
+        }
+        if let missingItems = self.productsList?.missingItems, !missingItems.isEmpty {
+            let productCell = ProductListViewCell.productCell(missingItems)
+            let section = ProductListViewSection(name: Constants.MissingItems.missingItemsHeader, cells: [productCell], isOpen: true)
+            sections.append(section)
         }
         let viewModel = ProductListViewModel(sections: sections)
         return viewModel

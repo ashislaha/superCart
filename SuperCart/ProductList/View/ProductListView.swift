@@ -11,6 +11,7 @@ import UIKit
 protocol ProductListProtocol: class {
     func itemSelected(model: Product)
     func itemRemoved(model: Product)
+    func viewProductDetails(_ product: Product)
 }
 
 class ProductListView: UIView {
@@ -24,7 +25,7 @@ class ProductListView: UIView {
 
     // public properties
     public weak var delegate: ProductListProtocol?
-    public var categories: [Category]? {
+    public var productsList: ProductsList? {
         didSet {
             let viewModel = self.getViewModel()
             self.model = viewModel
@@ -107,14 +108,14 @@ extension ProductListView: UITableViewDelegate {
         let cell = section.cells[indexPath.row]
         switch cell {
         case .productCell:
-            return section.isOpen ? 150 : 0
+            return section.isOpen ? 175 : 0
         case .messageCell:
             return UITableView.automaticDimension
         }
     }
 }
 
-//MARK:- UITableViewDelegate
+//MARK:- ProductListTableViewCellProtocol
 extension ProductListView: ProductListTableViewCellProtocol {
     func itemAdded(_ product: Product) {
         delegate?.itemSelected(model: product)
@@ -128,6 +129,9 @@ extension ProductListView: ProductListTableViewCellProtocol {
         tableView.reloadData()
     }
     
+    func viewProductDetails(_ product: Product) {
+        delegate?.viewProductDetails(product)
+    }
 }
 
 //MARK:- ProductListSectionHeaderViewProtocol

@@ -20,6 +20,10 @@ class EditQuantityView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.layer.borderWidth = 1.0
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.cornerRadius = 5.0
+        label.layer.masksToBounds = true
         return label
     }()
     
@@ -67,13 +71,13 @@ class EditQuantityView: UIView {
         
         [addButton, quantityLabel, removeButton].forEach { addSubview($0) }
         
-        addButton.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        addButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-
-        quantityLabel.anchors(top: topAnchor, leading: addButton.trailingAnchor, bottom: bottomAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        
-        removeButton.anchors(top: topAnchor, leading: quantityLabel.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        removeButton.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         removeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+
+        quantityLabel.anchors(top: topAnchor, leading: removeButton.trailingAnchor, bottom: bottomAnchor, padding: .init(top: 0, left: 8, bottom: 0, right: 0))
+        
+        addButton.anchors(top: topAnchor, leading: quantityLabel.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 8, bottom: 0, right: 0))
+        addButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
 
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
@@ -86,7 +90,10 @@ class EditQuantityView: UIView {
     }
 
     @objc private func removeButtonTapped() {
-        quantity -= 1
-        delegate?.quantityUpdated(quantity)
+        let updatedQuantity = quantity - 1
+        if updatedQuantity > 1 {
+            quantity = updatedQuantity
+        }
+        delegate?.quantityUpdated(updatedQuantity)
     }
 }

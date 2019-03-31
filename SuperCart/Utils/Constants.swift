@@ -57,12 +57,28 @@ struct Constants {
     }
     struct Product {
         static let id = "id"
-        static let imageUrl = "imageUrl"
+        static let imageUrl = "image_url"
         static let productName = "name"
         static let price = "price"
         static let brand = "brand"
         static let quantity = "quantity"
         static let preselected = "preselected"
+        static let category = "category"
+        static let subCategory = "subcategory"
+        static let productDetails = "productDetails"
+    }
+    struct MissingItems {
+        static let missingItems = "missingItems"
+        static let missingItemsHeader = "Missing Items"
+    }
+    
+    struct BoughtTogetherItems {
+        static let boughtTogetherItems = "bought_together"
+        static let boughtTogetherItemsHeader = "Related Items"
+    }
+    struct SimilarItems {
+        static let similarItems = "similar_products"
+        static let similarItemsHeader = "Suggested Items"
     }
 }
 

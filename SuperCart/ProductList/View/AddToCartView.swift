@@ -77,10 +77,10 @@ class AddToCartView: UIView {
         quantityLabel.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: messageLabel.leadingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 0))
         quantityLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
 
-        messageLabel.anchors(top: quantityLabel.topAnchor, bottom: quantityLabel.bottomAnchor, trailing: addToCartButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 30), size: .init(width: 60, height: 0))
+        messageLabel.anchors(top: quantityLabel.topAnchor, bottom: quantityLabel.bottomAnchor, trailing: addToCartButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 56), size: .init(width: 60, height: 0))
         
         
-        addToCartButton.anchors(top: topAnchor, leading: messageLabel.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 26, bottom: 16, right: 16))
+        addToCartButton.anchors(top: topAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 0, bottom: 16, right: 16))
         
         addToCartButton.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
         

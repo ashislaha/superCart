@@ -11,6 +11,7 @@ import UIKit
 protocol ProductCollectionViewCellProtocol: class {
     func itemAdded(_ product: Product)
     func itemRemoved(_ product: Product)
+    func viewProductDetails(_ product: Product)
 }
 
 class ProductCollectionViewCell: UICollectionViewCell {
@@ -70,6 +71,15 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return editQuantityView
     }()
     
+    // view details  button
+    private let viewDetailsButton : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(#imageLiteral(resourceName: "info_icon"), for: .normal)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
     // view loading
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,18 +115,20 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
     // MARK:- Layout Setup
     private func layoutSetup() {
-        [imageView, nameLabel, priceLabel, editQuantityView].forEach{ contentView.addSubview($0) }
+        [imageView, nameLabel, priceLabel, editQuantityView, viewDetailsButton].forEach{ contentView.addSubview($0) }
         imageView.addSubview(selectionImage)
 
         editQuantityView.delegate = self
         
         // anchoring
-        imageView.anchors(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 80))
+        imageView.anchors(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 10, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 80))
         nameLabel.anchors(top: imageView.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         priceLabel.anchors(top: nameLabel.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
-        editQuantityView.anchors(top: priceLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: imageView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
-
+        editQuantityView.anchors(top: priceLabel.bottomAnchor, leading: imageView.leadingAnchor, bottom: bottomAnchor, trailing: imageView.trailingAnchor, padding: .init(top: 4, left: 0, bottom: 8, right: 0), size: .init(width: 0, height: 30))
         selectionImage.anchors(top: imageView.topAnchor, leading: imageView.leadingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 16, height: 16))
+        viewDetailsButton.anchors(top: topAnchor, trailing: trailingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: 10), size: .init(width: 20, height: 20))
+
+        viewDetailsButton.addTarget(self, action: #selector(viewDetailsTapped), for: .touchUpInside)
 
     }
 }
@@ -152,23 +164,32 @@ extension ProductCollectionViewCell {
 
     private func setPrice() {
         guard let model = model else { return }
-        priceLabel.text =  "$" + model.price
+        priceLabel.text =  "$ " + "\(model.price)"
     }
 
     private func setQuantity() {
         guard let model = model else { return }
         editQuantityView.quantity =  model.quantity
     }
+    
+    @objc private func viewDetailsTapped() {
+        guard let model = model else { return }
+        delegate?.viewProductDetails(model)
+    }
 }
 
 extension ProductCollectionViewCell: EditQuantityViewProtocol {
     func quantityUpdated(_ quantity: Int) {
         guard let model = model else { return }
-        model.quantity = quantity
-        if quantity == 0 {
-            delegate?.itemRemoved(model)
-        } else if !model.isPreselected {
-            delegate?.itemAdded(model)
+        if quantity != 0 {
+            model.quantity = quantity
+            if !model.isPreselected {
+                delegate?.itemAdded(model)
+            }
+        } else {
+            if model.isPreselected {
+                delegate?.itemRemoved(model)
+            }
         }
     }
 }

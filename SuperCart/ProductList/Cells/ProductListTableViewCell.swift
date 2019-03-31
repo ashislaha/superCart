@@ -11,6 +11,7 @@ import UIKit
 protocol ProductListTableViewCellProtocol: class {
     func itemAdded(_ product: Product)
     func itemRemoved(_ product: Product)
+    func viewProductDetails(_ product: Product)
 }
 
 class ProductListTableViewCell: UITableViewCell {
@@ -121,6 +122,10 @@ extension ProductListTableViewCell: UICollectionViewDelegateFlowLayout {
 
 //MARK:- ProductCollectionViewCellProtocol
 extension ProductListTableViewCell: ProductCollectionViewCellProtocol {
+    func viewProductDetails(_ product: Product) {
+        self.delegate?.viewProductDetails(product)
+    }
+    
     func itemAdded(_ product: Product) {
         delegate?.itemAdded(product)
     }
