@@ -48,7 +48,8 @@ struct Constants {
     struct Category {
         static let name = "name"
         static let products = "products"
-        static let messages = "messages"
+        static let message = "message"
+        static let promotions = "promotions"
     }
     struct Attributes {
         static let brand = "Brand"
@@ -74,11 +75,11 @@ struct Constants {
     
     struct BoughtTogetherItems {
         static let boughtTogetherItems = "bought_together"
-        static let boughtTogetherItemsHeader = "Related Items"
+        static let boughtTogetherItemsHeader = "Bought Together"
     }
     struct SimilarItems {
         static let similarItems = "similar_products"
-        static let similarItemsHeader = "Suggested Items"
+        static let similarItemsHeader = "Suggested Products"
     }
 }
 

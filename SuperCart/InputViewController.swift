@@ -34,7 +34,7 @@ class InputViewController: UIViewController {
         let registedBefore = UserDefaults.standard.value(forKey: "user_agent") as? Bool ?? false
         guard !AppManager.shared.userAgent.isEmpty && !registedBefore else { return }
         
-        let registerDeviceUrl = "https://explore-world.herokuapp.com/registerDevice"
+        let registerDeviceUrl = Constants.DataService.endPoint + "/registerDevice"
         NetworkLayer.postData(urlString: registerDeviceUrl, bodyDict: AppManager.shared.userAgent, requestType: .POST, successBlock: { (_) in
             print("registed the device sucessfully")
             UserDefaults.standard.set(true, forKey: "user_agent")

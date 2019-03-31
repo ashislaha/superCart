@@ -19,24 +19,10 @@ final class DataServiceProvider {
         
     // get products list
     func getProductsList(productsList: [String: Any], completionHandler: @escaping ((ProductsList?)->())) throws {
-        let items = [[
-        "cat": "dairy",
-        "subCat": "milk"
-        ], [
-        "cat": "oil",
-        "subCat": "mustard oil"
-        ], [
-        "cat": "biscuits",
-        "subCat": "parle g"
-        ]]
-
-        let dict: [String: Any] = [
-            "id": "ashis@gmail.com",
-            "items": items
-        ]
+        
         let urlStr = Constants.DataService.endPoint + "/productList"
         guard !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
-        NetworkLayer.postData(urlString: urlStr, bodyDict: dict, requestType: .POST, successBlock: { (response) in
+        NetworkLayer.postData(urlString: urlStr, bodyDict: productsList, requestType: .POST, successBlock: { (response) in
             // success
             DispatchQueue.main.async {
                 guard let responseDict = response as? [String: Any] else {

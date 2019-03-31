@@ -26,6 +26,10 @@ class Category {
         } else {
             products = []
         }
-        messages = dict[Constants.Category.messages] as? [String] ?? []
+        if let promotions = dict[Constants.Category.promotions] as? [String: String], let message = promotions[Constants.Category.message] {
+            messages = [message]
+        } else {
+            messages = []
+        }
     }
 }

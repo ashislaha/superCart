@@ -67,7 +67,7 @@ class ChatViewController: JSQMessagesViewController {
     private var timer: Timer?
     private var index = 0
     private var endIndex = 0
-    private let initialMessage = "Hi Ashis. I am Walmart-Bot: WalRobo. Welcome to PaperCart"
+    private let initialMessage = "Hi Ashis. I am Wal-Robo. Welcome to PaperCart"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -242,8 +242,8 @@ extension ChatViewController {
             let productSpecifications = lastText.components(separatedBy: ",")
             if productSpecifications.count > 1 {
                 
-                let category = productSpecifications[0]
-                let subCategory = productSpecifications[1]
+                let category = productSpecifications[0].replacingOccurrences(of: ".", with: "")
+                let subCategory = productSpecifications[1].replacingOccurrences(of: ".", with: "")
                 
                 guard let productCategory = ProductCategory(rawValue: category) else { return }
                 
