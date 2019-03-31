@@ -31,4 +31,14 @@ class Product {
         category = dict[Constants.Product.category] as? String ?? ""
         subCategory = dict[Constants.Product.subCategory] as? String ?? ""
     }
+    
+    func getOrderParams() -> [String: Any] {
+        let params: [String: Any] = [
+        "id": id,
+        "quantity": quantity,
+        "category": category,
+        "subCategory": subCategory
+        ]
+        return params
+    }
 }

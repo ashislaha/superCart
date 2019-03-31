@@ -46,7 +46,7 @@ class ProductDetailsView: UIView {
         tableView.register(ProductDetailsTableViewCell.self, forCellReuseIdentifier: productCellId)
         tableView.register(ProductListTableViewCell.self, forCellReuseIdentifier: relatedItemsCellId)
         tableView.register(ProductListTableViewCell.self, forCellReuseIdentifier: suggestedItemsCellId)
-        tableView.register(ProductListSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerViewId)
+        tableView.register(ProductDetailsSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: headerViewId)
         tableView.allowsSelection = true
 //        tableView.estimatedRowHeight = 400
         backgroundColor = .white
@@ -81,15 +81,14 @@ extension ProductDetailsView: UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let sectionModel = model?.sections[section], let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewId) as? ProductListSectionHeaderView else { return nil }
-//        headerView.delegate = self
-//        headerView.section = section
-//        headerView.model = sectionModel
-//        return headerView
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section != 0, let sectionModel = model?.sections[section], let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewId) as? ProductDetailsSectionHeaderView else { return nil }
+        headerView.model = sectionModel
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard section != 0 else { return 0 }
         return 55
     }
 }

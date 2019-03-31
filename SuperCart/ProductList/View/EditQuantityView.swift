@@ -30,7 +30,7 @@ class EditQuantityView: UIView {
     private let addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "iconListAdd"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "button_more"), for: .normal)
         button.isUserInteractionEnabled = true
         return button
     }()

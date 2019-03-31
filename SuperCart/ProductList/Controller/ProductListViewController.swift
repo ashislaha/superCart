@@ -125,6 +125,12 @@ extension ProductListViewController: ProductListProtocol {
 //MARK:- AddToCartProtocol
 extension ProductListViewController: AddToCartProtocol {
     func addToCart() {
-        print(selectedProducts)
+        activityIndicator.startAnimating()
+        let productParams: [[String: Any]] = self.selectedProducts.map { (product) -> [String: Any] in
+            return product.getOrderParams()
+        }
+        try? dataSourceProvider.placeOrder(products: productParams) {[weak self] (success) in
+            self?.activityIndicator.stopAnimating()
+        }
     }
 }

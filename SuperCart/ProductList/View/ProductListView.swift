@@ -90,14 +90,24 @@ extension ProductListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let sectionModel = model?.sections[section], let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewId) as? ProductListSectionHeaderView else { return nil }
-        headerView.delegate = self
         headerView.section = section
         headerView.model = sectionModel
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(reloadSection(_:)))
+        headerView.addGestureRecognizer(tapGesture)
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55
+    }
+    
+    @objc func reloadSection(_ sender:UIGestureRecognizer) {
+        guard let header = sender.view as? ProductListSectionHeaderView,
+            let section = header.section, var sectionModel = model?.sections[section]  else { return }
+        
+        sectionModel.isOpen = !sectionModel.isOpen
+        model?.sections[section] = sectionModel
+        tableView.reloadSections([section], with: .automatic)
     }
 }
 
@@ -131,15 +141,5 @@ extension ProductListView: ProductListTableViewCellProtocol {
     
     func viewProductDetails(_ product: Product) {
         delegate?.viewProductDetails(product)
-    }
-}
-
-//MARK:- ProductListSectionHeaderViewProtocol
-extension ProductListView: ProductListSectionHeaderViewProtocol {
-    func reloadSection(_ section: Int, isOpen: Bool) {
-        guard var sectionModel = model?.sections[section] else { return }
-        sectionModel.isOpen = isOpen
-        model?.sections[section] = sectionModel
-        tableView.reloadSections([section], with: .automatic)
     }
 }
