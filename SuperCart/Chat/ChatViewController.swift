@@ -272,10 +272,15 @@ extension ChatViewController {
             addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
             return
         }
+        var shoppingListEmpty = true
         for (_, list) in AppManager.shared.shoppingList {
             for each in list {
+                shoppingListEmpty = false
                 addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.title)
             }
+        }
+        if shoppingListEmpty {
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
         }
     }
     
