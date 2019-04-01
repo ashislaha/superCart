@@ -143,7 +143,7 @@ extension ProductListViewController: AddToCartProtocol {
         }
         try? dataSourceProvider.placeOrder(products: productParams) {[weak self] (success) in
             self?.activityIndicator.stopAnimating()
-            let message = success ? "Order place successfully": "Some problem while placing the order"
+            let message = success ? "Order placed successfully": "Sorry. Some error has occured while placing the order."
             
             let alertVC = UIAlertController(title: message, message: nil, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in

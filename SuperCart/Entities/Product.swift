@@ -27,7 +27,7 @@ class Product {
         price = dict[Constants.Product.price] as? Float ?? 0
         brand = dict[Constants.Product.brand] as? String ?? ""
         quantity = dict[Constants.Product.quantity] as? Int ?? 0
-        isPreselected = dict[Constants.Product.preselected] as? Bool ?? false
+        isPreselected = (dict[Constants.Product.preselected] as? NSNumber ?? 0).boolValue
         category = dict[Constants.Product.category] as? String ?? ""
         subCategory = dict[Constants.Product.subCategory] as? String ?? ""
     }

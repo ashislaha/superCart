@@ -50,6 +50,7 @@ class AddToCartView: UIView {
             let message = quantity == 1 ? "Article in cart" : "Articles in cart"
             quantityLabel.text = "\(quantity)"
             messageLabel.text = message
+            addToCartButton.isEnabled = quantity > 0
         }
     }
 
