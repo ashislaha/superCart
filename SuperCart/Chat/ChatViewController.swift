@@ -206,6 +206,7 @@ extension ChatViewController {
             case "input.delete": strongSelf.handleItem(response: response, operation: .remove)
             case "input.showList": strongSelf.handleShowWishList()
             case "input.search": strongSelf.searchShoppingList()
+            case "input.recipe": strongSelf.handleRecipe(response: response)
             default: break
             }
             
@@ -269,7 +270,7 @@ extension ChatViewController {
     
     private func handleShowWishList() {
         guard !AppManager.shared.shoppingList.isEmpty else {
-            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is empty. Please add item to list.")
             return
         }
         var shoppingListEmpty = true
@@ -280,8 +281,15 @@ extension ChatViewController {
             }
         }
         if shoppingListEmpty {
-            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is empty. Please add item to list.")
         }
+    }
+    
+    private func handleRecipe(response: AIResponse) {
+        guard let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty,
+            let dict = messages.first, let speech = dict["speech"] as? String else { return }
+        
+        addMessage(withId: senderIdentifier, name: senderDisplayName, text: speech)
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
