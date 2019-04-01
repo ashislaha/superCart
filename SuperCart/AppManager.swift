@@ -81,5 +81,20 @@ class AppManager {
             "items": productList
         ]
     }
+    
+    public func clearList() {
+        shoppingList = [
+            .dairy: [],
+            .oil: [],
+            .rice: [],
+            .sugar: [],
+            .biscuits: [],
+            .juice: [],
+            .masala: [],
+            .tea: [],
+            .coffee: [],
+            .noodles: []
+        ]
+    }
 }
 

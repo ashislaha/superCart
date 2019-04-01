@@ -268,7 +268,10 @@ extension ChatViewController {
     }
     
     private func handleShowWishList() {
-        guard !AppManager.shared.shoppingList.isEmpty else { return }
+        guard !AppManager.shared.shoppingList.isEmpty else {
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
+            return
+        }
         for (_, list) in AppManager.shared.shoppingList {
             for each in list {
                 addMessage(withId: senderIdentifier, name: senderDisplayName, text: each.title)

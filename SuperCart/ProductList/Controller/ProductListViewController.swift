@@ -131,6 +131,18 @@ extension ProductListViewController: AddToCartProtocol {
         }
         try? dataSourceProvider.placeOrder(products: productParams) {[weak self] (success) in
             self?.activityIndicator.stopAnimating()
+            let message = success ? "Order place successfully": "Some problem while placing the order"
+            
+            let alertVC = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                
+                // on success go to log in page else retain in the PLP page
+                if success {
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
+            })
+            alertVC.addAction(action)
+            self?.present(alertVC, animated: true, completion: nil)
         }
     }
 }

@@ -70,7 +70,7 @@ struct Constants {
     }
     struct MissingItems {
         static let missingItems = "missingItems"
-        static let missingItemsHeader = "Missing Items"
+        static let missingItemsHeader = "Missing Items based on Order History"
     }
     
     struct BoughtTogetherItems {

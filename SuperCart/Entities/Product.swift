@@ -35,9 +35,9 @@ class Product {
     func getOrderParams() -> [String: Any] {
         let params: [String: Any] = [
         "id": id,
-        "quantity": quantity,
-        "category": category,
-        "subCategory": subCategory
+        "qty": quantity,
+        "cat": category,
+        "subCat": subCategory
         ]
         return params
     }
