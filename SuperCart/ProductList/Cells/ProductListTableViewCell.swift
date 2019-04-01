@@ -95,7 +95,6 @@ extension ProductListTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row < model.count else { return }
         let product = model[indexPath.row]
-//        product.isPreselected = !product.isPreselected
         if product.isPreselected {
             delegate?.itemRemoved(product)
         } else {
@@ -112,11 +111,15 @@ extension ProductListTableViewCell: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = collectionView.bounds.height
         return CGSize(width: frame.width/2 - 16, height: height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
 }
 
