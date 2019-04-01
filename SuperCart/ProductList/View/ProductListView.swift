@@ -130,13 +130,11 @@ extension ProductListView: ProductListTableViewCellProtocol {
     func itemAdded(_ product: Product) {
         delegate?.itemSelected(model: product)
         product.isPreselected = true
-        tableView.reloadData()
     }
     
     func itemRemoved(_ product: Product) {
         delegate?.itemRemoved(model: product)
         product.isPreselected = false
-        tableView.reloadData()
     }
     
     func viewProductDetails(_ product: Product) {

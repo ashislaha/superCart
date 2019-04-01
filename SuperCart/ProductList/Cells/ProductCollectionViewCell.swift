@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ProductCollectionViewCellProtocol: class {
-    func itemAdded(_ product: Product)
-    func itemRemoved(_ product: Product)
+    func itemAdded(_ product: Product,_ index: IndexPath)
+    func itemRemoved(_ product: Product,_ index: IndexPath)
     func viewProductDetails(_ product: Product)
 }
 
@@ -21,6 +21,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         }
     }
     public weak var delegate: ProductCollectionViewCellProtocol?
+    public var index: IndexPath?
     
     // add a NSCache for caching the images
     private let cacheImages = NSCache<NSString, UIImage>()
@@ -181,15 +182,15 @@ extension ProductCollectionViewCell {
 
 extension ProductCollectionViewCell: EditQuantityViewProtocol {
     func quantityUpdated(_ quantity: Int) {
-        guard let model = model else { return }
+        guard let model = model, let indexPath = index else { return }
         if quantity != 0 {
             model.quantity = quantity
             if !model.isPreselected {
-                delegate?.itemAdded(model)
+                delegate?.itemAdded(model, indexPath)
             }
         } else {
             if model.isPreselected {
-                delegate?.itemRemoved(model)
+                delegate?.itemRemoved(model, indexPath)
             }
         }
     }

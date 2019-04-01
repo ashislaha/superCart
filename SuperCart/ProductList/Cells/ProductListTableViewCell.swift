@@ -27,6 +27,7 @@ class ProductListTableViewCell: UITableViewCell {
     }
     weak var delegate: ProductListTableViewCellProtocol?
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -86,6 +87,7 @@ extension ProductListTableViewCell: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         let product = model[indexPath.row]
         cell.model = product
+        cell.index = indexPath
         cell.delegate = self
         return cell
     }
@@ -101,6 +103,7 @@ extension ProductListTableViewCell: UICollectionViewDelegate {
         } else {
             delegate?.itemAdded(product)
         }
+//        collectionView.reloadItems(at: [indexPath])
     }
 }
 
@@ -130,11 +133,13 @@ extension ProductListTableViewCell: ProductCollectionViewCellProtocol {
         self.delegate?.viewProductDetails(product)
     }
     
-    func itemAdded(_ product: Product) {
+    func itemAdded(_ product: Product,_ index: IndexPath) {
         delegate?.itemAdded(product)
+        collectionView.reloadItems(at: [index])
     }
     
-    func itemRemoved(_ product: Product) {
+    func itemRemoved(_ product: Product,_ index: IndexPath) {
         delegate?.itemRemoved(product)
+        collectionView.reloadItems(at: [index])
     }
 }

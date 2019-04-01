@@ -53,6 +53,7 @@ class AppManager {
     static let shared = AppManager()
     public var username: String?
     public var userAgent: [String: String] = [:]
+    public var products: [Product] = []
     
     var shoppingList: [ProductCategory: [BasicProduct]] = [
         .dairy: [],

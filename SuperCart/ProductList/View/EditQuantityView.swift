@@ -91,7 +91,7 @@ class EditQuantityView: UIView {
 
     @objc private func removeButtonTapped() {
         let updatedQuantity = quantity - 1
-        if updatedQuantity > 1 {
+        if updatedQuantity > 0 {
             quantity = updatedQuantity
         }
         delegate?.quantityUpdated(updatedQuantity)

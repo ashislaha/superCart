@@ -30,6 +30,12 @@ final class DataServiceProvider {
                     return
                 }
                 let productList = ProductsList(dict: responseDict)
+                var products = productList.categories.flatMap({ (category) -> [Product] in
+                    return category.products
+                })
+                products.append(contentsOf: productList.missingItems)
+                AppManager.shared.products = products
+                
                 completionHandler(productList)
             }
         }) { (error) in
@@ -66,7 +72,7 @@ final class DataServiceProvider {
         let urlStr = Constants.DataService.endPoint + "/placeOrder"
         guard !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
         let postDict: [String: Any] = [
-            "id": CurrentSession.sharedInstance.userName ?? "",
+            "id": AppManager.shared.username ?? "",
             "items": products
         ]
         
