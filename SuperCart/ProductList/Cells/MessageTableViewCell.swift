@@ -16,16 +16,12 @@ class MessageTableViewCell: UITableViewCell {
         }
     }
     
-    private var messageLabel : UILabel? /* = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        return label
-    }() */
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        messageLabel?.text = ""
+    }
+    
+    private var messageLabel : UILabel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,8 +30,6 @@ class MessageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
 
     func setUpCell() {
@@ -43,7 +37,6 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     private func layoutSetUp() {
-        
         messageLabel = UILabel(frame: bounds)
         addSubview(messageLabel!)
         messageLabel?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -52,10 +45,5 @@ class MessageTableViewCell: UITableViewCell {
         messageLabel?.textColor = .black
         messageLabel?.textAlignment = .center
         messageLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-
-//        addSubview(messageLabel)
-//
-//        messageLabel.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
     }
-
 }

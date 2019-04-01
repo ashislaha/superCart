@@ -66,6 +66,7 @@ class ProductListTableViewCell: UITableViewCell {
         collectionView.allowsSelection = true
         collectionView.backgroundColor = .white
         backgroundColor = .white
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
     }
     
     override func prepareForReuse() {
