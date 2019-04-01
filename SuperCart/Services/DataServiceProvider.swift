@@ -72,7 +72,7 @@ final class DataServiceProvider {
         let urlStr = Constants.DataService.endPoint + "/placeOrder"
         guard !urlStr.isEmpty else { throw DataSourceError.InvalidURL }
         let postDict: [String: Any] = [
-            "id": AppManager.shared.username ?? "",
+            "email": AppManager.shared.username ?? "",
             "items": products
         ]
         
@@ -83,6 +83,7 @@ final class DataServiceProvider {
                     completionHandler(false)
                     return
                 }
+                AppManager.shared.clearList()
                 completionHandler(true)
             }
         }) { (error) in

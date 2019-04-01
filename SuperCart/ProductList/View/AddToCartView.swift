@@ -37,7 +37,7 @@ class AddToCartView: UIView {
     private let addToCartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Add to Cart", for: .normal)
+        button.setTitle("Place Order", for: .normal)
         button.tintColor = .white
         button.isUserInteractionEnabled = true
         button.backgroundColor = .blue
@@ -52,13 +52,7 @@ class AddToCartView: UIView {
             messageLabel.text = message
         }
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+
     // MARK:- init
     override init(frame: CGRect) {
         super.init(frame: frame)
