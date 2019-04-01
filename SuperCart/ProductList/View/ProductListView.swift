@@ -57,6 +57,10 @@ class ProductListView: UIView {
         tableView.estimatedRowHeight = 150
         backgroundColor = .white
     }
+    
+    public func reload() {
+        self.tableView.reloadData()
+    }
 }
 
 //MARK:- UITableViewDataSource

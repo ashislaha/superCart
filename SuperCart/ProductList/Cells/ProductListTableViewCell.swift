@@ -103,7 +103,7 @@ extension ProductListTableViewCell: UICollectionViewDelegate {
         } else {
             delegate?.itemAdded(product)
         }
-//        collectionView.reloadItems(at: [indexPath])
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 

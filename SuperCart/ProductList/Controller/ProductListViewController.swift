@@ -42,12 +42,7 @@ class ProductListViewController: UIViewController {
     var productsList: ProductsList? {
         didSet {
             self.productListView.productsList = productsList
-            let selectedProducts: [Product] = productsList?.categories.flatMap { (category) -> [Product] in
-                return category.products.filter({ (product) -> Bool in
-                    return product.isPreselected
-                })
-            } ?? []
-            self.selectedProducts = selectedProducts
+            self.selectedProducts = getSelectedProducts()
         }
     }
     
@@ -63,6 +58,14 @@ class ProductListViewController: UIViewController {
         view.backgroundColor = .white
         title = "Product List"
         layoutSetUp()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if productsList != nil {
+            productListView.reload()
+            selectedProducts = getSelectedProducts()
+        }
     }
     
     private func layoutSetUp() {
@@ -100,6 +103,15 @@ class ProductListViewController: UIViewController {
         try? dataSourceProvider.placeOrder(products: items) {[weak self] (productsList) in
             self?.activityIndicator.stopAnimating()
         }
+    }
+    
+    private func getSelectedProducts() -> [Product] {
+        let selectedProducts: [Product] = productsList?.categories.flatMap { (category) -> [Product] in
+            return category.products.filter({ (product) -> Bool in
+                return product.isPreselected
+            })
+            } ?? []
+        return selectedProducts
     }
 }
 

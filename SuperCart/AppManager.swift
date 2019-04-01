@@ -97,5 +97,14 @@ class AppManager {
             .noodles: []
         ]
     }
+    
+    public func addProductToCart(_ productId: Int,_ quantity: Int) {
+        if let product = (self.products.filter { (product) -> Bool in
+            return product.id == productId
+            }).first {
+            product.quantity = quantity
+            product.isPreselected = true
+        }
+    }
 }
 
