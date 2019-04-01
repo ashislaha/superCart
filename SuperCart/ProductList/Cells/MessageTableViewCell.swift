@@ -12,16 +12,25 @@ class MessageTableViewCell: UITableViewCell {
 
     var message: String? {
         didSet {
-            messageLabel?.text = message
+            messageLabel.text = message
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        messageLabel?.text = ""
+        messageLabel.text = ""
     }
     
-    private var messageLabel : UILabel?
+    private var messageLabel : UILabel  = {
+     let label = UILabel()
+     label.translatesAutoresizingMaskIntoConstraints = false
+     label.numberOfLines = 0
+     label.lineBreakMode = .byWordWrapping
+     label.textColor = .black
+     label.textAlignment = .center
+     label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+     return label
+     }()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,13 +46,8 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     private func layoutSetUp() {
-        messageLabel = UILabel(frame: bounds)
-        addSubview(messageLabel!)
-        messageLabel?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        messageLabel?.numberOfLines = 0
-        messageLabel?.lineBreakMode = .byWordWrapping
-        messageLabel?.textColor = .black
-        messageLabel?.textAlignment = .center
-        messageLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        addSubview(messageLabel)
+
+        messageLabel.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 8, right: 8))
     }
 }

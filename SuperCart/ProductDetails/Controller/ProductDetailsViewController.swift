@@ -22,8 +22,8 @@ class ProductDetailsViewController: UIViewController {
     }()
     
     // add to cart view
-    private let addToCartView: AddToCartView = {
-        let addToCartView = AddToCartView()
+    private let addToCartView: ProductDetailsAddToCartView = {
+        let addToCartView = ProductDetailsAddToCartView()
         addToCartView.translatesAutoresizingMaskIntoConstraints = false
         return addToCartView
     }()
@@ -76,7 +76,9 @@ class ProductDetailsViewController: UIViewController {
 }
 
 //MARK:- AddToCartProtocol
-extension ProductDetailsViewController: AddToCartProtocol {
-    func addToCart() {
+extension ProductDetailsViewController: ProductDetailsAddToCartProtocol {
+    func addToCart(_ quantity: Int) {
+        guard let product = model else { return }
+        AppManager.shared.addProductToCart(product.id, quantity)
     }
 }

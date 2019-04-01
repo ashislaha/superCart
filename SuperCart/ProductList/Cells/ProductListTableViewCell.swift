@@ -27,6 +27,7 @@ class ProductListTableViewCell: UITableViewCell {
     }
     weak var delegate: ProductListTableViewCellProtocol?
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -86,6 +87,7 @@ extension ProductListTableViewCell: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ProductCollectionViewCell else { return UICollectionViewCell() }
         let product = model[indexPath.row]
         cell.model = product
+        cell.index = indexPath
         cell.delegate = self
         return cell
     }
@@ -96,12 +98,12 @@ extension ProductListTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row < model.count else { return }
         let product = model[indexPath.row]
-//        product.isPreselected = !product.isPreselected
         if product.isPreselected {
             delegate?.itemRemoved(product)
         } else {
             delegate?.itemAdded(product)
         }
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 
@@ -113,11 +115,15 @@ extension ProductListTableViewCell: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = collectionView.bounds.height
         return CGSize(width: frame.width/2 - 16, height: height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
 }
 
@@ -127,11 +133,13 @@ extension ProductListTableViewCell: ProductCollectionViewCellProtocol {
         self.delegate?.viewProductDetails(product)
     }
     
-    func itemAdded(_ product: Product) {
+    func itemAdded(_ product: Product,_ index: IndexPath) {
         delegate?.itemAdded(product)
+        collectionView.reloadItems(at: [index])
     }
     
-    func itemRemoved(_ product: Product) {
+    func itemRemoved(_ product: Product,_ index: IndexPath) {
         delegate?.itemRemoved(product)
+        collectionView.reloadItems(at: [index])
     }
 }

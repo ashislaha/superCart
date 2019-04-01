@@ -53,6 +53,7 @@ class AppManager {
     static let shared = AppManager()
     public var username: String?
     public var userAgent: [String: String] = [:]
+    public var products: [Product] = []
     
     var shoppingList: [ProductCategory: [BasicProduct]] = [
         .dairy: [],
@@ -95,6 +96,15 @@ class AppManager {
             .coffee: [],
             .noodles: []
         ]
+    }
+    
+    public func addProductToCart(_ productId: Int,_ quantity: Int) {
+        if let product = (self.products.filter { (product) -> Bool in
+            return product.id == productId
+            }).first {
+            product.quantity = quantity
+            product.isPreselected = true
+        }
     }
 }
 
