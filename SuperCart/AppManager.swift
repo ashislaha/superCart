@@ -31,6 +31,7 @@ enum ProductCategory: String {
     case tea
     case coffee
     case noodles
+    case dal
     
     func image() -> UIImage {
         switch self {
@@ -44,6 +45,7 @@ enum ProductCategory: String {
         case .tea: return #imageLiteral(resourceName: "tea")
         case .coffee: return #imageLiteral(resourceName: "coffee")
         case .noodles: return #imageLiteral(resourceName: "noodles")
+        case .dal: return #imageLiteral(resourceName: "dal")
         }
     }
 }
@@ -65,7 +67,8 @@ class AppManager {
         .masala: [],
         .tea: [],
         .coffee: [],
-        .noodles: []
+        .noodles: [],
+        .dal: []
     ]
     
     func getProductListForSearchAPI() -> [String: Any] {
@@ -94,7 +97,8 @@ class AppManager {
             .masala: [],
             .tea: [],
             .coffee: [],
-            .noodles: []
+            .noodles: [],
+            .dal: []
         ]
     }
     

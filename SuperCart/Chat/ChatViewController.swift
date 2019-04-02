@@ -206,6 +206,8 @@ extension ChatViewController {
             case "input.delete": strongSelf.handleItem(response: response, operation: .remove)
             case "input.showList": strongSelf.handleShowWishList()
             case "input.search": strongSelf.searchShoppingList()
+            case "input.recipe": strongSelf.handleRecipe(response: response)
+            case "input.smartSuggestion": strongSelf.handleItem(response: response, operation: .none)
             default: break
             }
             
@@ -251,8 +253,10 @@ extension ChatViewController {
                 
                 switch operation {
                 case .add:
-                    let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
-                    AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                    if !checkItemPresentInList(category: productCategory, subCategory: subCategory) {
+                        let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                        AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                    }
                     
                 case .remove:
                     if let basicProducts = AppManager.shared.shoppingList[productCategory] {
@@ -269,7 +273,7 @@ extension ChatViewController {
     
     private func handleShowWishList() {
         guard !AppManager.shared.shoppingList.isEmpty else {
-            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is empty. Please add item to list.")
             return
         }
         var shoppingListEmpty = true
@@ -280,8 +284,55 @@ extension ChatViewController {
             }
         }
         if shoppingListEmpty {
-            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is Empty. Please add item.")
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: "Your shopping list is empty. Please add item to list.")
         }
+    }
+    
+    // MARK:- Recipe
+    private func handleRecipe(response: AIResponse) {
+        guard let messages = response.result.fulfillment.messages as? [[String: Any]], !messages.isEmpty,
+            let dict = messages.first,
+            let speech = dict["speech"] as? String else { return }
+        
+        if let data = speech.data(using: .utf8),
+            let arrayDict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: String]],
+            let arrDict = arrayDict {
+            
+            var resultText = "added "
+            arrDict.forEach {
+                
+                let category = $0["category"] ?? ""
+                let subCategory = $0["subcategory"] ?? ""
+                
+                if let productCategory = ProductCategory(rawValue: category),
+                    !checkItemPresentInList(category: productCategory, subCategory: subCategory) {
+                    
+                    let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                    AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                }
+                resultText += subCategory + ", "
+            }
+            addMessage(withId: senderIdentifier, name: senderDisplayName, text: resultText)
+        } else {
+             addMessage(withId: senderIdentifier, name: senderDisplayName, text: speech)
+        }
+    }
+    
+    private func checkItemPresentInList(category: ProductCategory, subCategory: String) -> Bool {
+        let categoryEmpty = AppManager.shared.shoppingList[category]?.isEmpty ?? false
+        if categoryEmpty {
+            return false
+        } else {
+            // category have some data, check the subcategory of each data
+            if let addedProducts = AppManager.shared.shoppingList[category] {
+                for each in addedProducts {
+                    if each.subCategory == subCategory {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
     
     private func addMessage(withId id: String, name: String, text: String) {
