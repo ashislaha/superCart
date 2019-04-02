@@ -70,7 +70,7 @@ class AddToCartView: UIView {
         [quantityLabel, messageLabel, addToCartButton].forEach { addSubview($0) }
         
         quantityLabel.anchors(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: messageLabel.leadingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 0))
-        quantityLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        quantityLabel.widthAnchor.constraint(equalToConstant: 30).isActive = true
 
         messageLabel.anchors(top: quantityLabel.topAnchor, bottom: quantityLabel.bottomAnchor, trailing: addToCartButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 56), size: .init(width: 60, height: 0))
         
