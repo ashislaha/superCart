@@ -38,6 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // register notifications
         registerNotifications()
         
+        // Check if launched from notification
+        if let notificationOption = launchOptions?[.remoteNotification]  as? [String: AnyObject],
+            let productListParams = getProductListFromNotification(notificationOption) {
+            let productListController = ProductListViewController()
+            productListController.productListParams = productListParams
+            let productListNavCon = UINavigationController(rootViewController: productListController)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = productListNavCon
+        }
+        
         return true
     }
 
@@ -75,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        print("receive remote notification", userInfo)
+        print("receive remote notification", userInfo)        
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -98,6 +108,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    private func getProductListFromNotification(_ userInfo: [AnyHashable: Any]) -> [String: Any]? {
+        guard let notificationBody = userInfo["aps"] as?  NSDictionary else { return nil }
+        let items = notificationBody["items"] as? [[String: Any]] ?? []
+        let id = notificationBody["id"] as? String ?? ""
+        let productList: [String: Any] = [
+            "items": items,
+            "id": id
+        ]
+        return productList
     }
 }
 
