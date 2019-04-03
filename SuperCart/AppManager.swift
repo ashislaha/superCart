@@ -76,8 +76,15 @@ class AppManager {
         
         var productList: [[String: String]] = []
         for (_, value) in shoppingList {
+            var category = ""
+            var subCategory = ""
             for each in value {
-                productList.append(["cat": each.category, "subCat": each.subCategory ])
+                category = each.category
+                subCategory += each.subCategory + ","
+            }
+            if !category.isEmpty {
+                subCategory.removeLast() // remove last ","
+                productList.append(["cat": category, "subCat": subCategory ])
             }
         }
         return [
