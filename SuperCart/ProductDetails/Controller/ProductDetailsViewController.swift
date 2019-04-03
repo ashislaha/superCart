@@ -57,6 +57,7 @@ class ProductDetailsViewController: UIViewController {
         
         [productDetailsView, addToCartView, activityIndicator].forEach { view.addSubview($0) }
         addToCartView.delegate = self
+        productDetailsView.delegate = self
         
         productDetailsView.anchors(top: view.topAnchor, leading: view.leadingAnchor, bottom: addToCartView.topAnchor, trailing: view.trailingAnchor)
         addToCartView.anchors(leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
@@ -80,5 +81,19 @@ extension ProductDetailsViewController: ProductDetailsAddToCartProtocol {
     func addToCart(_ quantity: Int) {
         guard let product = model else { return }
         AppManager.shared.addProductToCart(product.id, quantity)
+        let message = "Item added successfully"
+        let alertVC = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+//MARK:- ProductDetailsViewProtocol
+extension ProductDetailsViewController: ProductDetailsViewProtocol {
+    func viewProductDetails(_ product: Product) {
+        let productDetailsViewController = ProductDetailsViewController()
+        productDetailsViewController.model = product
+        self.navigationController?.pushViewController(productDetailsViewController, animated: true)
     }
 }

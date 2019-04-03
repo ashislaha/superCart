@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ProductDetailsViewProtocol: class {
+    func viewProductDetails(_ product: Product)
+}
+
 class ProductDetailsView: UIView {
 
     // private properties
@@ -25,6 +29,7 @@ class ProductDetailsView: UIView {
             tableView.reloadData()
         }
     }
+    public var delegate: ProductDetailsViewProtocol?
     
     // MARK:- init
     override init(frame: CGRect) {
@@ -77,6 +82,7 @@ extension ProductDetailsView: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: suggestedItemsCellId, for: indexPath) as? ProductListTableViewCell else { return UITableViewCell() }
             cell.setUpCell()
             cell.model = products
+            cell.delegate = self
             return cell
         }
     }
@@ -104,5 +110,19 @@ extension ProductDetailsView: UITableViewDelegate {
         case .productsDetailsCell:
             return 400
         }
+    }
+}
+
+extension ProductDetailsView: ProductListTableViewCellProtocol {
+    func itemAdded(_ product: Product) {
+        
+    }
+    
+    func itemRemoved(_ product: Product) {
+        
+    }
+    
+    func viewProductDetails(_ product: Product) {
+        delegate?.viewProductDetails(product)
     }
 }
