@@ -79,7 +79,7 @@ struct Constants {
     }
     struct SimilarItems {
         static let similarItems = "similar_products"
-        static let similarItemsHeader = "Suggested Products"
+        static let similarItemsHeader = "Similar Products"
     }
 }
 

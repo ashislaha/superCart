@@ -40,13 +40,22 @@
                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CsM-Ff-a8f"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginTheme" translatesAutoresizingMaskIntoConstraints="NO" id="By8-aU-L6r">
+                                <rect key="frame" x="67.5" y="102" width="240" height="197"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="WfW-b2-ClO"/>
+                                    <constraint firstAttribute="height" constant="197" id="hUh-Rm-rfU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n4c-ct-Kk7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="75Z-bU-A2b"/>
                             <constraint firstItem="5FC-28-1Wj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8wL-cQ-hSh"/>
                             <constraint firstItem="n4c-ct-Kk7" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="NIQ-1A-p7h"/>
+                            <constraint firstItem="n4c-ct-Kk7" firstAttribute="top" secondItem="By8-aU-L6r" secondAttribute="bottom" constant="51.5" id="PVC-MZ-EVq"/>
                             <constraint firstItem="Yuv-qr-5Bl" firstAttribute="trailing" secondItem="n4c-ct-Kk7" secondAttribute="trailing" id="SWW-u4-XVh"/>
+                            <constraint firstItem="By8-aU-L6r" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UMg-9Z-IAs"/>
                             <constraint firstItem="5FC-28-1Wj" firstAttribute="top" secondItem="Yuv-qr-5Bl" secondAttribute="bottom" constant="16" id="mpq-bi-z6l"/>
                             <constraint firstItem="Yuv-qr-5Bl" firstAttribute="top" secondItem="n4c-ct-Kk7" secondAttribute="bottom" constant="22.5" id="q0s-5r-Ugh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n4c-ct-Kk7" secondAttribute="trailing" constant="16" id="w9i-Oc-m2u"/>
@@ -135,4 +144,7 @@
             <point key="canvasLocation" x="140" y="89.505247376311857"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="loginTheme" width="512" height="512"/>
+    </resources>
 </document>
