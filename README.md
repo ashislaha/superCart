@@ -36,5 +36,8 @@ application where the application understands the customber end to end.
 </b>
 
 
-https://github.com/ashislaha/superCart/files/3042067/Groceries.Hackathon.Prototype.pdf
+![Groceries Hackathon Prototype](https://user-images.githubusercontent.com/10649284/55541777-4c595a80-56e3-11e9-8694-aee8f78febbd.png)
+
+
+
 
