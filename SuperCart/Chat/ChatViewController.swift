@@ -29,13 +29,13 @@ struct Message {
 
 class OutgoingAvatar:NSObject, JSQMessageAvatarImageDataSource {
     func avatarImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user-avatar")
+        return #imageLiteral(resourceName: "walrobo")
     }
     func avatarHighlightedImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user-avatar")
+        return #imageLiteral(resourceName: "walrobo")
     }
     func avatarPlaceholderImage() -> UIImage! {
-        return #imageLiteral(resourceName: "user-avatar")
+        return #imageLiteral(resourceName: "walrobo")
     }
 }
 
@@ -67,7 +67,7 @@ class ChatViewController: JSQMessagesViewController {
     private var timer: Timer?
     private var index = 0
     private var endIndex = 0
-    private let initialMessage = "Hi Ashis. I am Wal-Robo. Welcome to PaperCart"
+    private let initialMessage = "Hi Ashis. I am Wal-Robo. Welcome to SuperCart"
     
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
