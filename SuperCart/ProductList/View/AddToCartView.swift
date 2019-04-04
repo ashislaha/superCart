@@ -17,7 +17,7 @@ class AddToCartView: UIView {
     private let quantityLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .blue
+        label.textColor = UIColor(red: 0, green: 76/255, blue: 148/255, alpha: 1.0)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
@@ -28,7 +28,7 @@ class AddToCartView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .blue
+        label.textColor = UIColor(red: 0, green: 76/255, blue: 148/255, alpha: 1.0)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         return label
@@ -40,7 +40,7 @@ class AddToCartView: UIView {
         button.setTitle("Place Order", for: .normal)
         button.tintColor = .white
         button.isUserInteractionEnabled = true
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(red: 0, green: 76/255, blue: 148/255, alpha: 1.0)
         return button
     }()
 

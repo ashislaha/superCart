@@ -83,11 +83,13 @@ extension ProductListView: UITableViewDataSource {
             cell.setUpCell()
             cell.delegate = self
             cell.model = products
+            cell.selectionStyle = .none
             return cell
         case .messageCell(let message):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: messageCellId, for: indexPath) as? MessageTableViewCell else { return UITableViewCell() }
             cell.setUpCell()
             cell.message = message
+            cell.selectionStyle = .none
             return cell
         }
     }

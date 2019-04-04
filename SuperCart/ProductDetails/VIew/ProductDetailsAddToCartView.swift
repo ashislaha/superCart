@@ -21,7 +21,7 @@ class ProductDetailsAddToCartView: UIView {
         button.setTitle("Add to Cart", for: .normal)
         button.tintColor = .white
         button.isUserInteractionEnabled = true
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor(red: 0, green: 76/255, blue: 148/255, alpha: 1.0)
         return button
     }()
 
