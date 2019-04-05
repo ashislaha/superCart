@@ -22,12 +22,14 @@ class LoginViewController: UIViewController {
         
         guard let userName = userName.text, let password = password.text, !userName.isEmpty, !password.isEmpty else { return }
         
-        guard let inputVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputViewController") as? InputViewController else { return }
-        
+//        guard let inputVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InputViewController") as? InputViewController else { return }
+//        navigationController?.pushViewController(inputVC, animated: true)
+
         AppManager.shared.username = userName
         AppManager.shared.userAgent["username"] = userName
+        guard let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
+        navigationController?.pushViewController(chatVC, animated: true)
         
-        navigationController?.pushViewController(inputVC, animated: true)
     }
 }
 
