@@ -8,13 +8,18 @@ In Groceries, most of time the customber order 61% same product basket-wise (per
 application where the application understands the customber end to end.
 
 <b>
-(1). Make my weekly shopping more efficient and help me discover new items I might like.
-  
-(2). Our customers heavily rely on search for multiple use cases. reduce the pain-point.
 
-(3). We do not help our customers to make puchase decision. 
+(1). User has to search for each item individually.
 
-(4). 61% of loyal customber basket has exact same items to purchased in past orders. Out of remaining 39%, 25% have similar item being purchased in the past. 
+(2). From search results, it is hard for the user to identify preferred items. reduce the pain-point.
+
+(3). User can miss out on adding certain regularly bought items because they were not suggested anywhere in their journey. 61% of loyal customber basket has exact same items to purchased in past orders. Out of remaining 39%, 25% have similar item being purchased in the past. 
+
+(4). Users keep purchasing the same set of products because complementary/bought-together items are not suggested to the users in the browse path. We do not help our customers to make puchase decision. 
+
+(5). Users can run out of certain groceries as they forgot to restock on those.
+
+(6). Users can miss out on better prices because they are unaware of price hikes in the near future, or of good offers available.
 
 </b>
 
