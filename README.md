@@ -40,6 +40,11 @@ application where the application understands the customber end to end.
 
 </b>
 
+### Demo:
+
+https://www.youtube.com/watch?v=mcVX0vnrHHA
+
+### Architecture:
 
 ![Groceries Hackathon Prototype](https://user-images.githubusercontent.com/10649284/55541777-4c595a80-56e3-11e9-8694-aee8f78febbd.png)
 
