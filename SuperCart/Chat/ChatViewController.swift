@@ -237,36 +237,44 @@ extension ChatViewController {
             
             addMessage(withId: senderId, name: senderDisplayName, text: speech)
             
-            let texts = speech.components(separatedBy: "#")
-            guard texts.count > 1, let lastText = texts.last else { return }
+            let textComponents = speech.components(separatedBy: "#")
+            guard textComponents.count > 1 else { return }
             
-            // handle shopping list along with image
-            let productSpecifications = lastText.components(separatedBy: ",")
-            if productSpecifications.count > 1 {
-                
-                let category = productSpecifications[0].replacingOccurrences(of: ".", with: "")
-                let subCategory = productSpecifications[1].replacingOccurrences(of: ".", with: "")
-                
-                guard let productCategory = ProductCategory(rawValue: category) else { return }
-                
-                addImageMedia(image: productCategory.image())
-                
-                switch operation {
-                case .add:
-                    if !checkItemPresentInList(category: productCategory, subCategory: subCategory) {
-                        let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
-                        AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+            for i in 1..<textComponents.count {
+                let productSpecifications = textComponents[i].components(separatedBy: ";")
+                if productSpecifications.count > 1 {
+                    var productCategories = productSpecifications[0].replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
+                    productCategories = productCategories.flatMap({ return $0.components(separatedBy: "and") })
+                    var productSubcategories = productSpecifications[1].replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
+                    productSubcategories = productSubcategories.flatMap({ return $0.components(separatedBy: "and") })
+                    for j in 0..<productCategories.count {
+                        
+                        let category = productCategories[j].trimmingCharacters(in: .whitespacesAndNewlines)
+                        let subCategory = productSubcategories[j].trimmingCharacters(in: .whitespacesAndNewlines)
+                        
+                        guard let productCategory = ProductCategory(rawValue: category) else { return }
+                        
+                        addImageMedia(image: productCategory.image())
+                        
+                        switch operation {
+                        case .add:
+                            if !checkItemPresentInList(category: productCategory, subCategory: subCategory) {
+                                let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                                AppManager.shared.shoppingList[productCategory]?.append(basicProduct)
+                            }
+                            
+                        case .remove:
+                            if let basicProducts = AppManager.shared.shoppingList[productCategory] {
+                                let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
+                                let tempBasicProducts = basicProducts.filter { $0 != basicProduct }
+                                AppManager.shared.shoppingList[productCategory] = tempBasicProducts
+                            }
+                            
+                        case .none: break
+                        }
                     }
-                    
-                case .remove:
-                    if let basicProducts = AppManager.shared.shoppingList[productCategory] {
-                        let basicProduct = BasicProduct(title: subCategory, category: category, subCategory: subCategory)
-                        let tempBasicProducts = basicProducts.filter { $0 != basicProduct }
-                        AppManager.shared.shoppingList[productCategory] = tempBasicProducts
-                    }
-                    
-                case .none: break
                 }
+                
             }
         }
     }

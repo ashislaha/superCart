@@ -27,9 +27,27 @@ class LoginViewController: UIViewController {
 
         AppManager.shared.username = userName
         AppManager.shared.userAgent["username"] = userName
+        trackUserAgent()
+        
         guard let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
         navigationController?.pushViewController(chatVC, animated: true)
         
     }
+    
+    private func trackUserAgent() {
+        
+        let registedBefore = UserDefaults.standard.value(forKey: "user_agent") as? Bool ?? false
+        guard !AppManager.shared.userAgent.isEmpty && !registedBefore else { return }
+        
+        let registerDeviceUrl = Constants.DataService.endPoint + "/registerDevice"
+        NetworkLayer.postData(urlString: registerDeviceUrl, bodyDict: AppManager.shared.userAgent, requestType: .POST, successBlock: { (_) in
+            print("registed the device sucessfully")
+            UserDefaults.standard.set(true, forKey: "user_agent")
+            UserDefaults.standard.synchronize()
+        }) { (_) in
+            print("device registed did not happen")
+        }
+    }
+
 }
 
