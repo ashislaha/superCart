@@ -235,18 +235,23 @@ extension ChatViewController {
             }
         } else {
             
-            addMessage(withId: senderId, name: senderDisplayName, text: speech)
-            
             let textComponents = speech.components(separatedBy: "#")
             guard textComponents.count > 1 else { return }
-            
+            addMessage(withId: senderId, name: senderDisplayName, text: textComponents[0])
+
             for i in 1..<textComponents.count {
                 let productSpecifications = textComponents[i].components(separatedBy: ";")
                 if productSpecifications.count > 1 {
                     var productCategories = productSpecifications[0].replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
-                    productCategories = productCategories.flatMap({ return $0.components(separatedBy: "and") })
+                    productCategories = productCategories.flatMap({ return $0.components(separatedBy: "and") }).filter({ (category) -> Bool in
+                        let category = category.trimmingCharacters(in: .whitespacesAndNewlines)
+                        return !category.isEmpty
+                    })
                     var productSubcategories = productSpecifications[1].replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
-                    productSubcategories = productSubcategories.flatMap({ return $0.components(separatedBy: "and") })
+                    productSubcategories = productSubcategories.flatMap({ return $0.components(separatedBy: "and") }).filter({ (subCategory) -> Bool in
+                        let subCategory = subCategory.trimmingCharacters(in: .whitespacesAndNewlines)
+                        return !subCategory.isEmpty
+                    })
                     for j in 0..<productCategories.count {
                         
                         let category = productCategories[j].trimmingCharacters(in: .whitespacesAndNewlines)
@@ -254,7 +259,7 @@ extension ChatViewController {
                         
                         guard let productCategory = ProductCategory(rawValue: category) else { return }
                         
-                        addImageMedia(image: productCategory.image())
+//                        addImageMedia(image: productCategory.image())
                         
                         switch operation {
                         case .add:
